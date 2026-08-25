@@ -69,8 +69,10 @@
   <!-- Información de la Empresa y su Rubro -->
   <section class="about" id="empresa">
     <div class="container about__content about__content--solo">
-      <span class="section-tag">Sobre nosotros</span>
-      <h2 class="section-title">Información de la Empresa y su Rubro</h2>
+      <header class="about__header">
+        <span class="section-tag">Sobre nosotros</span>
+        <h2 class="section-title">Información de la Empresa y su Rubro</h2>
+      </header>
 
       <div class="about__info">
         <p>
@@ -87,23 +89,32 @@
         </p>
       </div>
 
-      <div class="about__values">
+      <div class="about__values" aria-label="Valores de la empresa">
         <article class="about__value">
+          <span class="about__value-num" aria-hidden="true">01</span>
           <h3>Honestidad</h3>
+          <p>Actuamos con transparencia en cada informe y recomendación.</p>
         </article>
         <article class="about__value">
+          <span class="about__value-num" aria-hidden="true">02</span>
           <h3>Integridad</h3>
+          <p>Priorizamos la ética profesional en todas nuestras decisiones.</p>
         </article>
         <article class="about__value">
+          <span class="about__value-num" aria-hidden="true">03</span>
           <h3>Profesionalismo</h3>
+          <p>Aplicamos estándares técnicos actualizados y de alta calidad.</p>
         </article>
         <article class="about__value">
+          <span class="about__value-num" aria-hidden="true">04</span>
           <h3>Confidencialidad</h3>
+          <p>Protegemos la información financiera de cada cliente.</p>
         </article>
       </div>
 
       <div class="about__rubro">
-        <strong>Rubro:</strong> Servicios profesionales de contabilidad, finanzas y consultoría empresarial.
+        <span class="about__rubro-label">Rubro</span>
+        <p>Servicios profesionales de contabilidad, finanzas y consultoría empresarial.</p>
       </div>
     </div>
   </section>
@@ -213,10 +224,10 @@
 
   <!-- Footer — Pie de Página -->
   <footer class="footer" id="contacto">
-    <div class="container footer__grid">
+    <div class="container footer__main">
       <div class="footer__brand">
         <a href="#inicio" class="logo">
-          <img src="assets/logo.png" alt="Logo CNJ" class="logo__img">
+          <img src="assets/logo3.png" alt="Logo CNJ" class="logo__img">
           <div class="logo__text">
             <span class="logo__name">CNJ - Integridad Contable</span>
             <span class="logo__tagline">Confianza y Precisión</span>
@@ -226,31 +237,20 @@
           Firma de consultoría y servicios contables comprometida con la estabilidad financiera
           y el crecimiento sostenible de las MYPE en Perú.
         </p>
-
         <div class="footer__social">
           <a href="https://www.facebook.com/CNJIntegridadContable" target="_blank" rel="noopener noreferrer" class="footer__social-link" title="Facebook - CNJ Integridad Contable" aria-label="Facebook">
-            <img src="assets/red-facebook.png" alt="Facebook" class="footer__social-logo">
+            <img src="assets/red-facebook.png" alt="" class="footer__social-logo">
           </a>
           <a href="https://www.instagram.com/cnjintegridadcontable" target="_blank" rel="noopener noreferrer" class="footer__social-link" title="Instagram - CNJ Integridad Contable" aria-label="Instagram">
-            <img src="assets/red-instagram.png" alt="Instagram" class="footer__social-logo">
+            <img src="assets/red-instagram.png" alt="" class="footer__social-logo">
           </a>
           <a href="https://www.linkedin.com/company/cnj-integridad-contable" target="_blank" rel="noopener noreferrer" class="footer__social-link" title="LinkedIn - CNJ Integridad Contable" aria-label="LinkedIn">
-            <img src="assets/red-linkedin.png" alt="LinkedIn" class="footer__social-logo">
+            <img src="assets/red-linkedin.png" alt="" class="footer__social-logo">
           </a>
-        </div>
-
-        <a href="https://www.utp.edu.pe" target="_blank" rel="noopener noreferrer" class="footer__utp">
-          <img src="assets/logo_utp.png" alt="Logo Universidad Tecnológica del Perú">
-          <span>Universidad Tecnológica del Perú<br>Marcos de Desarrollo Web — 48308</span>
-        </a>
-
-        <div class="footer__student">
-          <strong>Nombre y Apellido:</strong>
-          <span>Jesús Manuel Mechan Gonzales</span>
         </div>
       </div>
 
-      <div>
+      <div class="footer__col">
         <h4 class="footer__heading">Servicios</h4>
         <ul class="footer__links">
           <li><a href="#servicios">Declaración Tributaria SUNAT</a></li>
@@ -259,7 +259,7 @@
         </ul>
       </div>
 
-      <div>
+      <div class="footer__col">
         <h4 class="footer__heading">Empresa</h4>
         <ul class="footer__links">
           <li><a href="#empresa">Sobre nosotros</a></li>
@@ -268,16 +268,28 @@
         </ul>
       </div>
 
-      <div>
+      <div class="footer__col">
         <h4 class="footer__heading">Contacto</h4>
-        <div class="footer__contact-item">
-          <span>+51 987 654 321</span>
-        </div>
-        <div class="footer__contact-item">
-          <span>contacto@cnjcontable.pe</span>
-        </div>
+        <ul class="footer__contact">
+          <li>
+            <span class="footer__contact-label">Teléfono</span>
+            <a href="tel:+51987654321">+51 987 654 321</a>
+          </li>
+          <li>
+            <span class="footer__contact-label">Correo</span>
+            <a href="mailto:contacto@cnjcontable.pe">contacto@cnjcontable.pe</a>
+          </li>
+          <li>
+            <span class="footer__contact-label">Horario</span>
+            <span>Lun – Vie, 9:00 a 18:00</span>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-        <h4 class="footer__heading footer__heading--spaced">Empresas del mismo rubro</h4>
+    <div class="container footer__aside">
+      <div class="footer__partners">
+        <h4 class="footer__heading">Empresas del mismo rubro</h4>
         <div class="footer__rubro-logos">
           <a href="https://www.pwc.com/pe.html" target="_blank" rel="noopener noreferrer" class="footer__rubro-link">
             <img src="assets/logo_pwc.png" alt="Logo PwC Perú" class="footer__rubro-logo">
@@ -293,10 +305,29 @@
           </a>
         </div>
       </div>
+
+      <div class="footer__meta">
+        <a href="https://www.utp.edu.pe" target="_blank" rel="noopener noreferrer" class="footer__utp">
+          <span class="footer__rubro-logo-wrap">
+            <img src="assets/logo_utp.png" alt="Logo Universidad Tecnológica del Perú">
+          </span>
+          <span class="footer__utp-text">
+            <strong>Universidad Tecnológica del Perú</strong>
+            <span>Marcos de Desarrollo Web — 48308</span>
+          </span>
+        </a>
+        <div class="footer__student">
+          <span class="footer__contact-label">Estudiante</span>
+          <strong>Jesús Manuel Mechan Gonzales</strong>
+        </div>
+      </div>
     </div>
 
-    <div class="container footer__bottom">
-      <p>&copy; 2026 CNJ - Integridad Contable. Todos los derechos reservados.</p>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>&copy; 2026 CNJ - Integridad Contable. Todos los derechos reservados.</p>
+        <a href="#inicio" class="footer__top-link">Volver al inicio</a>
+      </div>
     </div>
   </footer>
 
