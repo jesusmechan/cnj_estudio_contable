@@ -1,5 +1,6 @@
 const menuToggle = document.getElementById('menuToggle');
 const nav = document.getElementById('nav');
+const backToTop = document.getElementById('backToTop');
 
 if (menuToggle && nav) {
   menuToggle.addEventListener('click', () => {
@@ -9,11 +10,12 @@ if (menuToggle && nav) {
 }
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  if (link === backToTop) return;
+
   link.addEventListener('click', (event) => {
     const href = link.getAttribute('href');
-    if (!href || href === '#') return;
-
-    const target = document.getElementById(href.slice(1));
+    const id = href && href.slice(1);
+    const target = id && document.getElementById(id);
     if (!target) return;
 
     event.preventDefault();
@@ -27,3 +29,20 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     history.replaceState(null, '', window.location.pathname + window.location.search);
   });
 });
+
+if (backToTop) {
+  const updateBackToTop = () => {
+    const nearEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 120;
+    backToTop.classList.toggle('is-visible', nearEnd);
+  };
+
+  backToTop.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  });
+
+  window.addEventListener('scroll', updateBackToTop, { passive: true });
+  window.addEventListener('resize', updateBackToTop);
+  updateBackToTop();
+}

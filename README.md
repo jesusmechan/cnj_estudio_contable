@@ -19,7 +19,7 @@ Cumplir los requisitos del avance de página de inicio (`Pg Inicio`), incluyendo
 | Información empresa y rubro | Sección “Nosotros” con texto (24px) y rubro |
 | 3 productos/servicios | Tarjetas con imagen, descripción y precio |
 | Clientes referenciales | 2 testimonios con imagen e información |
-| Footer | Redes sociales, logo UTP, datos del estudiante, contacto y 3 empresas del rubro |
+| Footer | 3 columnas: redes + UTP, contacto integrante (nombre/correo), 3 páginas del rubro |
 
 ---
 
@@ -42,7 +42,7 @@ Cumplir los requisitos del avance de página de inicio (`Pg Inicio`), incluyendo
 3. **Nosotros** — información de la empresa, valores y rubro  
 4. **Servicios** — tres servicios con imagen, texto y precio  
 5. **Clientes** — dos clientes referenciales con testimonio  
-6. **Footer** — redes, UTP, estudiante, contacto y logos del rubro (PwC, EY, KPMG)
+6. **Footer** — 3 redes (logo+link), UTP, contacto integrante (nombre y correo), 3 páginas del rubro (logo+link)
 
 La navegación hace scroll suave entre secciones **sin modificar la URL** con `#`.
 
