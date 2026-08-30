@@ -14,19 +14,37 @@ NARRATION_OUT = OUT_DIR / "narration.mp3"
 MUSIC_OUT = OUT_DIR / "ambient.mp3"
 VIDEO_SILENT = OUT_DIR / "video-silent.mp4"
 AUDIO_MIX = OUT_DIR / "audio-mix.mp3"
+TARGET_DURATION = 60.0
 
 W, H = 1280, 720
 NAVY = (36, 52, 71)
 GOLD = (201, 162, 39)
 WHITE = (255, 255, 255)
 VOICE = "es-PE-CamilaNeural"
+SPEECH_RATE = "-8%"
 
 NARRATION = """
-CNJ Integridad Contable. Confianza y precisión para el crecimiento de tu empresa.
-Ofrecemos gestión y declaración tributaria ante la SUNAT, con cumplimiento fiscal oportuno.
-Contabilidad integral y libros electrónicos para mantener tu información clara y al día.
-Asesoría financiera y planificación fiscal para tomar mejores decisiones.
-Contáctanos en contacto arroba cnjcontable punto pe. CNJ Integridad Contable.
+Bienvenido a CNJ Integridad Contable. Somos una firma de consultoría y servicios contables
+comprometida con el crecimiento sostenible de micro, pequeñas y medianas empresas en Perú.
+Nuestro lema es Confianza y Precisión, y trabajamos con honestidad, integridad,
+profesionalismo y confidencialidad en cada proyecto.
+
+Nuestro primer servicio es la Gestión y Declaración Tributaria ante la SUNAT.
+Nos encargamos del cálculo, preparación y presentación de tus declaraciones juradas mensuales
+y anuales, incluyendo PDT, Plame y Sire, para que tu empresa cumpla siempre en regla
+y evite multas o sanciones.
+
+También ofrecemos Contabilidad Integral y Libros Electrónicos. Procesamos comprobantes,
+registramos ingresos y gastos, y elaboramos estados financieros oportunos con precisión
+y transparencia, garantizando orden en toda tu información contable.
+
+Complementamos nuestro servicio con Asesoría Financiera y Planificación Fiscal.
+Diseñamos estrategias legales para optimizar tu carga tributaria y te brindamos análisis
+claros que facilitan la toma de decisiones y el crecimiento de tu negocio.
+
+En CNJ Integridad Contable transformamos la información contable en decisiones confiables.
+Contáctanos en contacto arroba cnjcontable punto pe, o al más cinco uno, nueve ocho siete,
+seis cinco cuatro, tres dos uno. CNJ Integridad Contable, tu aliado contable de confianza.
 """.strip()
 
 
@@ -118,9 +136,27 @@ def get_duration(path: Path) -> float:
 async def generate_narration() -> None:
     import edge_tts
 
-    communicate = edge_tts.Communicate(NARRATION, VOICE)
+    communicate = edge_tts.Communicate(NARRATION, VOICE, rate=SPEECH_RATE)
     await communicate.save(str(NARRATION_OUT))
     print(f"Narración generada: {NARRATION_OUT.name}")
+
+
+def fit_narration_duration() -> None:
+    narration_duration = get_duration(NARRATION_OUT)
+    if narration_duration <= TARGET_DURATION:
+        return
+
+    tempo = min(narration_duration / TARGET_DURATION, 2.0)
+    fitted = OUT_DIR / "narration-fitted.mp3"
+    run_ffmpeg([
+        "-i", str(NARRATION_OUT),
+        "-filter:a", f"atempo={tempo:.4f}",
+        "-t", f"{TARGET_DURATION:.2f}",
+        "-c:a", "libmp3lame", "-q:a", "4",
+        str(fitted),
+    ])
+    fitted.replace(NARRATION_OUT)
+    print(f"Narración ajustada a {TARGET_DURATION:.0f}s (tempo x{tempo:.2f})")
 
 
 def generate_ambient(duration: float) -> None:
@@ -136,16 +172,22 @@ def generate_ambient(duration: float) -> None:
     print(f"Música ambiental generada: {MUSIC_OUT.name}")
 
 
-def mix_audio(duration: float) -> None:
+def mix_audio() -> None:
     run_ffmpeg([
         "-i", str(NARRATION_OUT),
         "-i", str(MUSIC_OUT),
-        "-filter_complex", "[0:a]volume=1.0[voice];[1:a]volume=0.35[music];[voice][music]amix=inputs=2:duration=first:dropout_transition=0",
-        "-t", f"{duration:.2f}",
+        "-filter_complex",
+        (
+            f"[0:a]apad=whole_dur={TARGET_DURATION},atrim=0:{TARGET_DURATION}[voice];"
+            f"[1:a]atrim=0:{TARGET_DURATION}[music];"
+            "[voice]volume=1.0[v];[music]volume=0.35[m];"
+            "[v][m]amix=inputs=2:duration=longest:dropout_transition=0"
+        ),
+        "-t", f"{TARGET_DURATION:.2f}",
         "-c:a", "libmp3lame", "-q:a", "4",
         str(AUDIO_MIX),
     ])
-    print(f"Audio mezclado: {AUDIO_MIX.name}")
+    print(f"Audio mezclado ({TARGET_DURATION:.0f}s): {AUDIO_MIX.name}")
 
 
 def build_slides() -> list[Path]:
@@ -194,25 +236,28 @@ def merge_video_audio() -> None:
         "-i", str(AUDIO_MIX),
         "-c:v", "copy",
         "-c:a", "aac", "-b:a", "192k",
-        "-shortest",
+        "-t", f"{TARGET_DURATION:.2f}",
         "-movflags", "+faststart",
         str(VIDEO_OUT),
     ])
-    print(f"Video final con audio: {VIDEO_OUT}")
+    print(f"Video final con audio ({TARGET_DURATION:.0f}s): {VIDEO_OUT}")
 
 
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     asyncio.run(generate_narration())
-    audio_duration = get_duration(NARRATION_OUT) + 0.5
+    fit_narration_duration()
 
-    generate_ambient(audio_duration)
-    mix_audio(audio_duration)
+    generate_ambient(TARGET_DURATION)
+    mix_audio()
 
     slide_paths = build_slides()
-    build_video(slide_paths, audio_duration)
+    build_video(slide_paths, TARGET_DURATION)
     merge_video_audio()
+
+    final_duration = get_duration(VIDEO_OUT)
+    print(f"Duración final: {final_duration:.1f} segundos")
 
 
 if __name__ == "__main__":
