@@ -18,6 +18,7 @@ Cumplir los requisitos del avance de página de inicio (`Pg Inicio`), incluyendo
 | Portada principal (imagen) | Hero full-bleed con imagen y texto superpuesto |
 | Información empresa y rubro | Sección “Nosotros” con texto (24px) y rubro |
 | 3 productos/servicios | Tarjetas con imagen, descripción y precio |
+| Video | Video institucional local (`assets/video-cnj.mp4`) generado con marca CNJ |
 | Clientes referenciales | 2 testimonios con imagen e información |
 | Footer | 3 columnas: redes + UTP, contacto integrante (nombre/correo), 3 páginas del rubro |
 
@@ -41,8 +42,16 @@ Cumplir los requisitos del avance de página de inicio (`Pg Inicio`), incluyendo
 2. **Portada** — imagen de fondo, título y llamados a la acción  
 3. **Nosotros** — información de la empresa, valores y rubro  
 4. **Servicios** — tres servicios con imagen, texto y precio  
-5. **Clientes** — dos clientes referenciales con testimonio  
-6. **Footer** — 3 redes (logo+link), UTP, contacto integrante (nombre y correo), 3 páginas del rubro (logo+link)
+5. **Video** — video institucional local sobre servicios de CNJ  
+6. **Clientes** — dos clientes referenciales con testimonio  
+7. **Footer** — 3 redes (logo+link), UTP, contacto integrante (nombre y correo), 3 páginas del rubro (logo+link)
+
+Para regenerar el video institucional (con narración en español y audio de fondo):
+
+```bash
+pip install edge-tts pillow
+python scripts/generate_video.py
+```
 
 La navegación hace scroll suave entre secciones **sin modificar la URL** con `#`.
 
@@ -61,6 +70,8 @@ Avance 1/
 │   ├── logo.png / logo3.png
 │   ├── portada.jpg
 │   ├── producto-1.jpg … producto-3.jpg
+│   ├── video-cnj.mp4
+│   ├── video-slides/   # diapositivas usadas para generar el video
 │   ├── red-facebook.png / red-instagram.png / red-linkedin.png
 │   ├── logo_utp.png
 │   └── logo_pwc.png / logo_ey.png / logo_kpmg.png

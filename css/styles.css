@@ -490,6 +490,75 @@ ul {
   border-radius: var(--radius-sm);
 }
 
+/* ===== Video ===== */
+.video-section {
+  padding: 5.5rem 0;
+  background: var(--gray);
+}
+
+.video-section__layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.video-section__player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  background: var(--navy);
+}
+
+.video-section__player iframe,
+.video-section__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+  background: var(--navy);
+}
+
+.video-section__info h3 {
+  font-size: 1.35rem;
+  color: var(--navy);
+  margin-bottom: 1.25rem;
+}
+
+.video-section__list {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.video-section__list li {
+  padding-left: 1rem;
+  border-left: 3px solid var(--gold);
+}
+
+.video-section__list strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+}
+
+.video-section__list span {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.video-section__info .btn-cta {
+  color: var(--white);
+}
+
 /* ===== Testimonials ===== */
 .testimonials {
   padding: 5.5rem 0;
@@ -776,6 +845,10 @@ ul {
 @media (max-width: 1024px) {
   .services__grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .video-section__layout {
+    grid-template-columns: 1fr;
   }
 
   .footer__main {

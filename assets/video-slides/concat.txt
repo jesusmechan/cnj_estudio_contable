@@ -1,0 +1,11 @@
+file 'C:/Users/jesus/OneDrive/Escritorio/UTP/2026/CICLO 6/Marcos de Desarrollo Web - 48308/Avance 1/assets/video-slides/slide_01.png'
+duration 5.495
+file 'C:/Users/jesus/OneDrive/Escritorio/UTP/2026/CICLO 6/Marcos de Desarrollo Web - 48308/Avance 1/assets/video-slides/slide_02.png'
+duration 5.495
+file 'C:/Users/jesus/OneDrive/Escritorio/UTP/2026/CICLO 6/Marcos de Desarrollo Web - 48308/Avance 1/assets/video-slides/slide_03.png'
+duration 5.495
+file 'C:/Users/jesus/OneDrive/Escritorio/UTP/2026/CICLO 6/Marcos de Desarrollo Web - 48308/Avance 1/assets/video-slides/slide_04.png'
+duration 5.495
+file 'C:/Users/jesus/OneDrive/Escritorio/UTP/2026/CICLO 6/Marcos de Desarrollo Web - 48308/Avance 1/assets/video-slides/slide_05.png'
+duration 5.495
+file 'C:/Users/jesus/OneDrive/Escritorio/UTP/2026/CICLO 6/Marcos de Desarrollo Web - 48308/Avance 1/assets/video-slides/slide_05.png'
