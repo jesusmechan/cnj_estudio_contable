@@ -397,12 +397,17 @@ ul { list-style: none; }
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+  border: 3px solid var(--gold);
+  border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
   background: var(--navy);
-  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
 }
 
-.video-section__player:hover { box-shadow: 0 20px 48px rgba(26, 37, 51, 0.18); }
+.video-section__player:hover {
+  box-shadow: 0 20px 48px rgba(26, 37, 51, 0.18);
+  border-color: var(--gold-light);
+}
 
 .video-section__video {
   position: absolute;
