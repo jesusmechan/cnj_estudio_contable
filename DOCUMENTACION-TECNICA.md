@@ -688,4 +688,621 @@ Offset de 120px en `updateActiveNav` compensa la altura del header sticky.
 
 ---
 
+## 9. Preguntas y respuestas (temario del curso)
+
+Esta sección responde posibles preguntas del docente según el **temario de evaluación**, siempre relacionadas con el proyecto CNJ.
+
+---
+
+### 9.1 Variables, datos e información
+
+**P: ¿Qué es una variable en programación?**  
+R: Es un espacio con nombre que guarda un valor que puede cambiar durante la ejecución del programa. En JavaScript se declara con `const` o `let`.
+
+**P: ¿Qué variables usa tu proyecto?**  
+R: En `main.js` hay varias, por ejemplo:
+
+```javascript
+const menuToggle = document.getElementById('menuToggle');
+const nav = document.getElementById('nav');
+const header = document.querySelector('.header');
+let currentId = 'inicio';  // dentro de updateActiveNav()
+```
+
+- `menuToggle`, `nav`, `header` guardan referencias a elementos HTML del DOM.
+- `currentId` guarda el id de la sección visible para marcar el enlace activo del menú.
+
+**P: ¿Qué diferencia hay entre dato e información?**  
+R: Un **dato** es un valor aislado (un número, un texto, un true/false). La **información** es el dato con contexto y significado. Por ejemplo, `350` es un dato; `"Desde S/ 350 / mes"` en la tarjeta de servicios es información porque comunica el precio del servicio tributario.
+
+**P: ¿Qué es `const` y por qué lo usaste?**  
+R: `const` declara una constante: no se puede reasignar después. Se usa para elementos del DOM que no cambian (`nav`, `header`) y para funciones auxiliares. Solo se usa `let` cuando el valor sí cambia, como `currentId`.
+
+---
+
+### 9.2 Tipos de datos
+
+**P: ¿Qué tipos de datos existen en JavaScript?**  
+R: Los principales son:
+
+| Tipo | Ejemplo en el proyecto |
+|------|------------------------|
+| **String** (texto) | `'inicio'`, `'#servicios'`, `'aria-expanded'` |
+| **Number** (número) | `120`, `12`, `0.15` (threshold del observer) |
+| **Boolean** (verdadero/falso) | `true` / `false` en `open`, `entry.isIntersecting` |
+| **Object** (objeto) | `{ behavior: 'smooth', block: 'start' }` en scrollIntoView |
+| **Undefined** | Cuando un elemento no existe y `getElementById` no lo encuentra |
+| **DOM Element** | Lo que devuelve `document.getElementById('nav')` |
+
+**P: ¿Qué tipo de dato devuelve `document.querySelectorAll('.nav__link')`?**  
+R: Devuelve una **NodeList** (lista de nodos del DOM), similar a un arreglo. Por eso se puede usar `.forEach()` para recorrer cada enlace del menú.
+
+**P: ¿Qué tipos de datos hay en HTML/CSS?**  
+R: En HTML los datos son principalmente **texto** (contenido de párrafos, títulos) y **atributos** (href, src, alt, id). En CSS los valores pueden ser strings (`"Fira Sans"`), números con unidad (`5.5rem`, `768px`), colores (`#c9a227`) o funciones (`clamp()`, `rgba()`).
+
+---
+
+### 9.3 Métodos o funciones
+
+**P: ¿Qué es una función?**  
+R: Es un bloque de código reutilizable con un nombre que ejecuta una tarea. Puede recibir parámetros y devolver un resultado.
+
+**P: ¿Qué funciones creaste en tu proyecto?**  
+R: En `main.js`:
+
+| Función | Qué hace |
+|---------|----------|
+| `closeMenu()` | Cierra el menú móvil y actualiza accesibilidad |
+| `clearHash()` | Limpia el `#` de la URL |
+| `scrollToInicio()` | Hace scroll suave al inicio |
+| `updateBackToTop()` | Muestra u oculta el botón flotante |
+| `updateHeader()` | Añade sombra al header al hacer scroll |
+| `updateActiveNav()` | Marca el enlace activo del menú |
+| `onScroll()` | Llama a updateHeader y updateActiveNav |
+
+**P: ¿Qué es un método?**  
+R: Es una función que pertenece a un objeto. Ejemplos usados en el proyecto:
+
+```javascript
+nav.classList.toggle('nav--open');           // método del objeto classList
+target.scrollIntoView({ behavior: 'smooth' }); // método del elemento DOM
+link.addEventListener('click', handler);      // método de document/element
+entries.forEach((entry) => { ... });          // método del arreglo/NodeList
+history.replaceState(null, '', url);          // método del objeto history
+```
+
+**P: ¿Qué es una función flecha (`=>`)?**  
+R: Es una forma moderna de escribir funciones en JavaScript. Ejemplo del proyecto:
+
+```javascript
+menuToggle.addEventListener('click', () => {
+  const open = nav.classList.toggle('nav--open');
+});
+```
+
+Equivale a una función anónima, pero con sintaxis más corta.
+
+---
+
+### 9.4 Estructuras de programación
+
+#### Estructura secuencial
+
+**P: ¿Qué es la estructura secuencial?**  
+R: Es cuando las instrucciones se ejecutan **una tras otra**, en orden, de arriba hacia abajo.
+
+**P: ¿Dónde se ve en tu código?**  
+R: Al cargar `main.js`, primero se obtienen las referencias al DOM, luego se definen funciones, después se registran event listeners y al final se llama `onScroll()`. Ese flujo es secuencial:
+
+```
+1. const menuToggle = ...
+2. const closeMenu = () => { ... }
+3. menuToggle.addEventListener(...)
+4. document.querySelectorAll(...).forEach(...)
+5. onScroll()  ← ejecuta updateHeader + updateActiveNav al cargar
+```
+
+#### Estructura condicional
+
+**P: ¿Qué es una estructura condicional?**  
+R: Ejecuta código **solo si se cumple una condición** (`if`, `else if`, `else`).
+
+**P: ¿Qué condicionales usa tu proyecto?**  
+R: Ejemplos reales:
+
+```javascript
+// Solo cierra menú si existen nav y menuToggle
+if (nav && menuToggle) { ... }
+
+// Si el destino es inicio, scroll especial
+if (id === 'inicio') {
+  event.preventDefault();
+  scrollToInicio();
+  return;
+}
+
+// Si el elemento entra en pantalla, mostrarlo
+if (entry.isIntersecting) {
+  entry.target.classList.add('is-visible');
+}
+
+// Header con sombra solo si scroll > 12px
+header.classList.toggle('header--scrolled', window.scrollY > 12);
+
+// Animaciones solo si el usuario NO prefiere movimiento reducido
+if (!prefersReducedMotion) { ... } else { ... }
+```
+
+**P: ¿Qué es el operador ternario?**  
+R: Es un `if` corto en una línea: `condición ? valorSiTrue : valorSiFalse`. En el proyecto se usa indirectamente con `.classList.toggle('clase', condición)`, que añade la clase si la condición es true y la quita si es false.
+
+#### Estructura repetitiva
+
+**P: ¿Qué es una estructura repetitiva?**  
+R: Ejecuta un bloque de código **varias veces** (bucles: `for`, `forEach`, `while`).
+
+**P: ¿Qué bucles usa tu proyecto?**  
+R:
+
+```javascript
+// Recorre TODOS los enlaces internos (#)
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener('click', ...);
+});
+
+// Recorre cada entrada del Intersection Observer
+entries.forEach((entry) => { ... });
+
+// Recorre secciones para saber cuál está activa
+sections.forEach((section) => {
+  if (section.offsetTop <= scrollPos) {
+    currentId = section.id;
+  }
+});
+
+// Recorre enlaces del nav para marcar el activo
+navLinks.forEach((link) => {
+  link.classList.toggle('nav__link--active', href === `#${currentId}`);
+});
+```
+
+**P: ¿Por qué usas `forEach` y no `for`?**  
+R: `forEach` es más legible cuando se recorre una lista de elementos del DOM. En este proyecto no se necesita un índice numérico, solo procesar cada elemento.
+
+---
+
+### 9.5 Lenguajes de programación: HTML, CSS y JavaScript
+
+#### HTML
+
+**P: ¿Qué es HTML y para qué sirve en tu proyecto?**  
+R: **HyperText Markup Language** — lenguaje de marcado que define la **estructura y contenido** de la página. En CNJ organiza header, secciones, artículos, footer, imágenes, video y enlaces. No define colores ni comportamiento; solo el esqueleto semántico.
+
+**P: ¿Qué etiquetas semánticas usaste?**  
+R: `<header>`, `<nav>`, `<section>`, `<article>`, `<footer>`, `<h1>`–`<h4>`, `<p>`, `<ul>`, `<li>`, `<video>`, `<img>`, `<a>`. Ayudan a lectores de pantalla, SEO y mantenimiento del código.
+
+**P: ¿Qué es un atributo HTML?**  
+R: Información extra en una etiqueta. Ejemplos del proyecto: `id="servicios"`, `class="service-card"`, `href="#contacto"`, `alt="Logo CNJ"`, `aria-label="Abrir menú"`.
+
+#### CSS
+
+**P: ¿Qué es CSS y para qué sirve?**  
+R: **Cascading Style Sheets** — define **presentación visual**: colores, tipografías, tamaños, layout, animaciones y responsive. En CNJ está todo en `css/styles.css`.
+
+**P: ¿Qué técnicas de CSS usaste?**  
+R:
+- **Variables CSS** (`:root`) para la paleta navy + gold.
+- **Flexbox** para header, botones, footer social.
+- **Grid** para servicios (3 cols), valores (4 cols), testimonios (2 cols).
+- **Media queries** para tablet (1024px), móvil (768px) y móvil pequeño (480px).
+- **Transiciones y keyframes** para hover, reveal y Ken Burns.
+- **Position** sticky (header), fixed (back-to-top), absolute (overlay del hero).
+
+**P: ¿Qué es responsive design?**  
+R: Diseño que se adapta a distintos tamaños de pantalla. En el proyecto el menú pasa de horizontal a hamburguesa, los grids de 3–4 columnas bajan a 1, y los botones del hero se apilan en móvil.
+
+#### JavaScript
+
+**P: ¿Qué es JavaScript y qué hace en tu página?**  
+R: Lenguaje de programación que corre en el **navegador** y añade **comportamiento dinámico**: menú móvil, scroll suave, nav activo, animaciones al scroll y botón volver arriba. Sin JS la página se vería igual pero no sería interactiva.
+
+**P: ¿Qué es el DOM?**  
+R: **Document Object Model** — representación en memoria del HTML que JavaScript puede leer y modificar. Por eso `document.getElementById('nav')` devuelve el `<nav>` real de la página y se le pueden añadir clases o eventos.
+
+**P: ¿Qué es un event listener?**  
+R: Escucha un evento del usuario (clic, scroll, resize) y ejecuta una función. Ejemplo:
+
+```javascript
+window.addEventListener('scroll', onScroll, { passive: true });
+```
+
+**P: ¿Por qué no usaste jQuery ni React?**  
+R: El avance pide tecnologías base del curso. El sitio es estático y pequeño; JavaScript vanilla es suficiente y no añade dependencias.
+
+---
+
+### 9.6 Base de datos
+
+**P: ¿Tu proyecto usa base de datos?**  
+R: **No.** Es un sitio web **estático**: todo el contenido (textos, imágenes, video) está en archivos HTML, CSS, JS y la carpeta `assets/`. No hay login, formularios que guarden datos ni servidor backend.
+
+**P: ¿Qué es una base de datos?**  
+R: Sistema organizado para **almacenar, consultar y modificar datos** de forma persistente. Ejemplos: MySQL, PostgreSQL, MongoDB. Se usa cuando hay usuarios registrados, productos en tienda online, blog con artículos dinámicos, etc.
+
+**P: ¿Dónde están los “datos” de CNJ entonces?**  
+R: Directamente en el HTML (servicios, testimonios, contacto) y en archivos multimedia (`assets/`). Si en un avance futuro hubiera formulario de contacto con backend, ahí sí podría guardarse información en una base de datos.
+
+**P: ¿Qué relación tiene con el rubro contable?**  
+R: Una firma contable real podría usar BD para clientes, facturas y declaraciones. Este avance solo **presenta** la empresa; no gestiona operaciones contables.
+
+---
+
+### 9.7 Mapa de sitio web
+
+**P: ¿Qué es un mapa de sitio?**  
+R: Diagrama que muestra la **estructura y jerarquía** de las páginas o secciones de un sitio. Indica qué contenido existe y cómo se relaciona.
+
+**P: ¿Cuál es el mapa de sitio de tu proyecto?**  
+R: Al ser **single page**, no hay múltiples archivos HTML; el mapa son las **secciones ancladas** dentro de `index.html`:
+
+```
+CNJ - Integridad Contable (index.html)
+│
+├── Inicio (#inicio) ..................... Portada / Hero
+├── Nosotros (#empresa) ................ Info empresa + valores
+├── Servicios (#servicios) ............. 3 productos/servicios
+├── Video (#video) ..................... Video institucional
+├── Clientes (#clientes) ............. 2 testimonios
+└── Contacto (#contacto) ............... Footer (redes, UTP, contacto, rubro)
+```
+
+**P: ¿Cómo se navega entre secciones?**  
+R: Por el menú del header y enlaces internos (`href="#seccion"`). JavaScript hace scroll suave sin cambiar de archivo ni dejar `#` en la URL.
+
+---
+
+### 9.8 Wireframe
+
+**P: ¿Qué es un wireframe?**  
+R: **Boceto o maqueta** de baja fidelidad de una página. Define disposición de bloques (header, hero, columnas, footer) **sin colores finales ni imágenes reales**. Es el plano antes del diseño visual.
+
+**P: ¿Tu proyecto siguió un wireframe?**  
+R: Sí, implícitamente según el **checklist del avance** y un layout corporativo típico:
+
+```
+┌─────────────────────────────────────────┐
+│ [Logo]  Nav Nav Nav Nav Nav  [CTA][≡]  │  ← Header
+├─────────────────────────────────────────┤
+│ ████████████████████████████████████████│
+│ █  Título grande                      █│  ← Portada (imagen + texto)
+│ █  [Botón] [Botón]                    █│
+├─────────────────────────────────────────┤
+│         Título sección                  │
+│    Texto intro + [4 cajas valores]      │  ← Nosotros
+├─────────────────────────────────────────┤
+│    [Card 1]  [Card 2]  [Card 3]       │  ← Servicios
+├─────────────────────────────────────────┤
+│    [Video]     |    Lista info          │  ← Video
+├─────────────────────────────────────────┤
+│    [Testimonio 1]  [Testimonio 2]       │  ← Clientes
+├─────────────────────────────────────────┤
+│ Col1: Redes+UTP | Col2: Contacto | Col3 │  ← Footer
+│              Copyright                  │
+└─────────────────────────────────────────┘
+```
+
+**P: ¿Wireframe vs diseño final?**  
+R: El wireframe define **posición**; el CSS aplica **identidad visual** (navy, gold, Fira Sans, sombras, animaciones). El HTML implementa la estructura que el wireframe planteó.
+
+---
+
+### 9.9 Página web
+
+**P: ¿Qué es una página web?**  
+R: Documento o conjunto de documentos accesibles por navegador vía HTTP/HTTPS. Puede ser estática (archivos fijos) o dinámica (contenido generado por servidor/BD).
+
+**P: ¿Qué tipo de página web es la tuya?**  
+R: **Landing page estática de una sola página** (one-page). Todo vive en `index.html` con secciones verticales. Objetivo: presentar CNJ, sus servicios, video, clientes y datos de contacto.
+
+**P: ¿Qué archivos componen la página web completa?**  
+R:
+
+| Capa | Archivo | Rol |
+|------|---------|-----|
+| Estructura | `index.html` | Contenido y semántica |
+| Presentación | `css/styles.css` | Diseño y responsive |
+| Comportamiento | `js/main.js` | Interactividad |
+| Recursos | `assets/*` | Imágenes, logos, video |
+
+**P: ¿Cómo se publica o visualiza?**  
+R: Abriendo `index.html` en cualquier navegador moderno. También puede subirse a GitHub Pages, Netlify o un hosting; no requiere servidor de aplicaciones ni base de datos.
+
+**P: ¿Qué requisitos del avance cumple la página?**  
+R:
+
+| Requisito | Sección |
+|-----------|---------|
+| Encabezado (logo + nombre) | Header |
+| Portada con imagen | `#inicio` |
+| Info empresa y rubro | `#empresa` |
+| 3 productos/servicios | `#servicios` |
+| Video | `#video` |
+| 2 clientes referenciales | `#clientes` |
+| Footer 3 columnas | `#contacto` |
+
+**P: ¿Qué mejoras podría tener en avances futuros?**  
+R: Formulario de contacto con validación JS, backend + base de datos, más páginas (blog, portal cliente), CMS para editar contenido sin tocar HTML, o PWA para uso offline.
+
+---
+
+## 11. Preguntas difíciles y preguntas trampa (defensa oral)
+
+Esta sección prepara respuestas para preguntas más exigentes o con “truco”: conceptos que suenan parecidos, detalles del código que el docente puede pedir explicar en vivo, y errores comunes que conviene no cometer.
+
+> **Consejo:** Si no recuerdas algo al instante, di “está en `main.js` línea X” o “lo resolví con CSS en la clase Y” y explica la lógica, no memorices palabra por palabra.
+
+---
+
+### 11.1 Preguntas difíciles
+
+**P: ¿Por qué usaste `const` casi everywhere y no `var`?**  
+R: `var` tiene *hoisting* y scope de función; puede causar bugs. `const` y `let` tienen *block scope* (más predecible). Uso `const` cuando la referencia no cambia (elementos DOM) y `let` solo cuando el valor se reasigna (`currentId`).
+
+**P: ¿Qué es el DOM y en qué momento se construye?**  
+R: El DOM es el árbol de nodos que representa el HTML en memoria. El navegador lo construye al parsear `index.html`. `main.js` va al final del `<body>` precisamente para que, cuando se ejecute, el DOM ya exista y `getElementById('nav')` encuentre el elemento.
+
+**P: ¿Qué pasa si quitas el `<script>` del final del body y lo pones en el `<head>` sin `defer`?**  
+R: El script se ejecutaría **antes** de que existan `#nav` o `#menuToggle`. `getElementById` devolvería `null` y los event listeners no se registrarían. Por eso el script va al final o se usa `defer`.
+
+**P: Explica qué hace `event.preventDefault()` en la navegación.**  
+R: Los enlaces `href="#servicios"` por defecto saltan a la sección **y** añaden `#servicios` a la URL. `preventDefault()` cancela ese comportamiento nativo; luego yo controlo el scroll con `scrollIntoView` y limpio la URL con `clearHash()`.
+
+**P: ¿Por qué limpiar el hash si el scroll ya funciona con `#`?**  
+R: Requisito de diseño del avance: URL limpia. Además evita que al recargar la página el navegador abra directamente en una sección intermedia y que el historial quede lleno de `#empresa`, `#servicios`, etc.
+
+**P: ¿Qué es `history.replaceState` y por qué no usaste `history.pushState`?**  
+R: `replaceState` **sustituye** la entrada actual del historial sin crear una nueva. `pushState` añadiría una entrada por cada clic en el menú. Con `replaceState` el botón “atrás” del navegador no recorre cada sección visitada.
+
+**P: ¿Qué es Intersection Observer y por qué no usaste scroll + `getBoundingClientRect`?**  
+R: Intersection Observer es una API del navegador que avisa cuando un elemento entra o sale del viewport, con mejor rendimiento que calcular posiciones en cada evento `scroll`. Para animaciones “al aparecer” es la opción moderna y eficiente.
+
+**P: Explica `threshold: 0.15` y `rootMargin: '0px 0px -40px 0px'`.**  
+R: `threshold: 0.15` → el callback se dispara cuando ~15% del elemento es visible. `rootMargin` negativo abajo reduce el área de detección: el reveal se activa un poco **antes** de que el elemento quede pegado al borde inferior de la pantalla.
+
+**P: ¿Por qué haces `unobserve` después de mostrar un elemento?**  
+R: Para no seguir observando algo que ya animó. Ahorra trabajo en cada scroll y evita togglear clases innecesariamente.
+
+**P: ¿Qué significa `{ passive: true }` en el listener de scroll?**  
+R: Le dice al navegador que el handler **no** va a llamar `preventDefault()`. Eso permite optimizar el scroll (menos bloqueos). Es buena práctica en listeners de scroll/touch que solo leen posición.
+
+**P: ¿Cómo sabe el menú cuál enlace marcar como activo?**  
+R: `updateActiveNav()` toma `scrollY + 120` (compensa header sticky), recorre `section[id]` y `footer[id]`, y guarda el `id` de la última sección cuyo `offsetTop` ya pasó. Luego compara cada `nav__link` con `#${currentId}` y aplica `nav__link--active`.
+
+**P: ¿Por qué 120px de offset y no exactamente la altura del header?**  
+R: 120px es una compensación práctica: altura del header (~70–80px) más un margen para que el cambio de sección activa se sienta natural antes de que el título quede tapado. Es un valor de afinación, no una constante mágica del navegador.
+
+**P: ¿Qué diferencia hay entre `id` y `class`?**  
+R: `id` debe ser **único** en la página (`id="nav"`, `id="servicios"`). `class` puede repetirse en muchos elementos (`class="nav__link"`, `class="service-card"`). JS usa `id` para un elemento concreto; CSS y JS usan `class` para estilos y grupos.
+
+**P: ¿Qué es BEM y un ejemplo de tu proyecto?**  
+R: Block Element Modifier: nomenclatura para CSS. Bloque `.service-card`, elemento `.service-card__title`, modificador `.nav__link--active`. Evita choques como `.title` genérico en toda la página.
+
+**P: ¿Flexbox o Grid: cuándo usaste cada uno?**  
+R: **Flexbox** para alinear en una fila o columna (header, logo + texto, footer social). **Grid** para layouts bidimensionales con columnas iguales (3 servicios, 4 valores, 3 columnas footer). Regla práctica: flex para componentes pequeños; grid para la “rejilla” de secciones.
+
+**P: ¿Qué hace `position: sticky` en el header?**  
+R: Se comporta como `relative` hasta que el scroll llega a `top: 0`; entonces “se pega” arriba como `fixed` pero **dentro** de su contenedor padre. Ideal para nav que siempre se ve al bajar.
+
+**P: ¿Qué es `clamp()` en CSS y dónde lo usaste?**  
+R: `clamp(mínimo, preferido, máximo)` — valor fluido. Ejemplo: `clamp(2rem, 4.5vw, 3.2rem)` en `.cover__title`: el título crece con el ancho de pantalla pero nunca baja de 2rem ni supera 3.2rem.
+
+**P: ¿Qué es `box-sizing: border-box`?**  
+R: El `padding` y `border` se incluyen en el `width`/`height` declarado. Sin esto, un elemento `width: 100%` + padding podría desbordar su contenedor. El reset lo aplica a todos los elementos.
+
+**P: ¿Por qué un solo `<h1>` en toda la página?**  
+R: Buena práctica SEO y accesibilidad: un título principal por documento. Los demás encabezados son `<h2>` (secciones) y `<h3>` (subtítulos en tarjetas o video).
+
+**P: ¿Qué es `scroll-margin-top: 5.5rem`?**  
+R: Cuando navegas a `#empresa`, el navegador deja 5.5rem de espacio arriba del borde de la sección al hacer scroll. Compensa el header sticky para que el título no quede oculto debajo.
+
+**P: ¿Por qué `playsinline` en el `<video>`?**  
+R: En iOS Safari, sin `playsinline` el video a menudo fuerza pantalla completa. Con el atributo se reproduce dentro del layout de la página.
+
+**P: ¿Qué es `rel="noopener noreferrer"` en enlaces externos?**  
+R: Seguridad: `noopener` evita que la pestaña nueva acceda a `window.opener` (tu página). `noreferrer` no envía referrer. Estándar en links con `target="_blank"`.
+
+**P: ¿Por qué algunas imágenes tienen `alt=""` vacío en redes sociales?**  
+R: El enlace ya tiene `aria-label="Facebook"`. Si el `alt` repitiera “Facebook”, un lector de pantalla diría dos veces lo mismo. `alt=""` marca la imagen como decorativa cuando el texto alternativo está en el enlace.
+
+---
+
+### 11.2 Preguntas trampa (¡cuidado con estas!)
+
+**P: “Tu página usa JavaScript para el scroll suave, entonces CSS `scroll-behavior: smooth` sobra, ¿no?”**  
+R: **Trampa.** No sobra del todo: CSS smooth puede actuar como respaldo si JS falla o en navegación nativa. Pero el flujo principal lo controla JS porque también necesito `preventDefault`, `clearHash` y `closeMenu`. Ambos conviven; JS tiene la lógica de negocio.
+
+**P: “¿HTML es un lenguaje de programación?”**  
+R: **No.** HTML es lenguaje de **marcado** (estructura). CSS es hoja de **estilos**. JavaScript sí es lenguaje de **programación** (lógica, condicionales, bucles). Los tres se complementan.
+
+**P: “¿Tu sitio es dinámico porque tiene animaciones?”**  
+R: **Trampa.** “Dinámico” en web suele significar contenido generado en servidor o desde BD. Las animaciones CSS/JS son **interactividad en el cliente**, pero el sitio sigue siendo **estático**: mismos archivos HTML para todos los usuarios.
+
+**P: “¿Usaste Bootstrap?” / “¿Es WordPress?”**  
+R: **No.** Todo es código propio: un `index.html`, un `styles.css`, un `main.js`. Sin frameworks CSS ni CMS. Si preguntan por qué: el avance evalúa HTML/CSS/JS base.
+
+**P: “¿El footer no es una sección `<section>`?”**  
+R: Correcto usar `<footer>`, no `<section>`. Semánticamente el footer es pie de página. Aun así tiene `id="contacto"` y JS lo incluye en `querySelectorAll('section[id], footer[id]')` para el nav activo.
+
+**P: “¿Cuántas páginas tiene tu sitio?”**  
+R: **Una** página HTML (`index.html`) con **seis secciones** navegables por anclas. No confundir “secciones” con “archivos .html”.
+
+**P: “¿Por qué Contacto apunta al footer y no a un formulario?”**  
+R: El avance pide datos de contacto del integrante en el footer (nombre y correo). No exige formulario. `mailto:jesus.mechan@utp.edu.pe` permite contacto directo por correo.
+
+**P: “¿`getElementById` y `querySelector` son lo mismo?”**  
+R: **No.** `getElementById('nav')` busca un id único. `querySelector('.header')` acepta cualquier selector CSS (clase, id, combinaciones). `querySelectorAll` devuelve **todos** los que coinciden (NodeList).
+
+**P: “¿`==` y `===`?”**  
+R: `==` compara con coerción de tipos (`5 == '5'` es true). `===` compara valor **y** tipo (`5 === '5'` es false). En el proyecto se usa `===` implícitamente en comparaciones estrictas como `href === '#${currentId}'`.
+
+**P: “¿Una variable y un atributo HTML son lo mismo?”**  
+R: **No.** Variable JS vive en memoria durante ejecución (`const nav`). Atributo HTML vive en el markup (`id="nav"`, `aria-expanded="false"`). JS puede **leer y modificar** atributos con `setAttribute` / `getAttribute`.
+
+**P: “¿La base de datos está en la carpeta `assets`?”**  
+R: **No.** `assets` son archivos estáticos (imágenes, video, logos). No hay BD en este avance.
+
+**P: “¿El mapa de sitio es el menú de navegación?”**  
+R: **Relacionados pero no iguales.** El menú es la UI para navegar. El **mapa de sitio** es el diagrama de estructura (qué bloques existen y cómo se organizan). Aquí coinciden porque hay una sola página con secciones ancladas.
+
+**P: “¿Wireframe y mockup es lo mismo?”**  
+R: **No.** Wireframe = boceto de layout (cajas, sin diseño final). Mockup = diseño visual más fiel (colores, tipografía, imágenes). Este proyecto pasó de wireframe conceptual al mockup implementado en CSS.
+
+**P: “¿Por qué no usaste `<iframe>` para el video?”**  
+R: El video es **local** (`assets/video-cnj.mp4`). `<video>` nativo es más ligero, sin dependencia de YouTube, funciona offline y cumple el requisito de video integrado en la página.
+
+**P: “¿Si desactivo JavaScript la página se rompe?”**  
+R: No se “rompe”: el contenido HTML y CSS se ven. Lo que **deja de funcionar**: menú hamburguesa, scroll suave controlado, limpieza de URL, nav activo al scroll, animaciones reveal y botón volver arriba. Los enlaces `#` seguirían saltando a secciones (comportamiento nativo).
+
+**P: “¿`forEach` puede detenerse con `break`?”**  
+R: **Trampa.** En un `forEach` normal **no** funciona `break`. Para salir antes habría que usar `for...of`, `for` clásico o `some`/`every`. En este proyecto no hace falta cortar el bucle a mitad.
+
+**P: “¿Arrow function tiene su propio `this`?”**  
+R: **No** — no tiene `this` propio (hereda del contexto léxico). En este proyecto casi no usamos `this`; usamos funciones flecha en callbacks (`addEventListener`, `forEach`, Intersection Observer) por sintaxis clara.
+
+---
+
+### 11.3 “Explícame este código en vivo”
+
+Preguntas típicas señalando un fragmento. Respuestas listas:
+
+#### Bloque A — Menú hamburguesa
+
+```javascript
+menuToggle.addEventListener('click', () => {
+  const open = nav.classList.toggle('nav--open');
+  menuToggle.classList.toggle('is-open', open);
+  menuToggle.setAttribute('aria-expanded', String(open));
+});
+```
+
+**Qué decir:** Al clic, `toggle` devuelve `true` si añadió la clase y `false` si la quitó. Ese booleano `open` sincroniza el icono X (`.is-open`) y accesibilidad (`aria-expanded`). CSS muestra u oculta el menú con `.nav--open`.
+
+#### Bloque B — Navegación interna
+
+```javascript
+if (id === 'inicio') {
+  event.preventDefault();
+  scrollToInicio();
+  closeMenu();
+  clearHash();
+  return;
+}
+```
+
+**Qué decir:** Caso especial para inicio: evito el default del enlace, scroll suave al hero, cierro menú móvil si estaba abierto, limpio URL y salgo con `return` para no ejecutar el código de abajo.
+
+#### Bloque C — Nav activo
+
+```javascript
+sections.forEach((section) => {
+  if (section.offsetTop <= scrollPos) {
+    currentId = section.id;
+  }
+});
+```
+
+**Qué decir:** Recorro secciones en orden del DOM. Si el top de la sección ya pasó el punto de scroll (+ offset), actualizo `currentId`. La última que cumpla la condición es la sección “actual” visible.
+
+#### Bloque D — Reveal
+
+```javascript
+if (entry.isIntersecting) {
+  entry.target.classList.add('is-visible');
+  revealObserver.unobserve(entry.target);
+}
+```
+
+**Qué decir:** Cuando el elemento entra en viewport, CSS pasa de `.reveal` a `.reveal.is-visible` (fade in). Dejo de observarlo para no repetir la animación.
+
+#### Bloque E — CSS header sticky
+
+```css
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header--scrolled {
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow);
+}
+```
+
+**Qué decir:** Sticky mantiene el header visible. JS añade `--scrolled` al bajar para dar feedback visual (sombra) separando contenido fijo del que scroll.
+
+---
+
+### 11.4 Comparativas rápidas (el docente pregunta “¿por qué X y no Y?”)
+
+| Pregunta | Respuesta corta |
+|----------|-----------------|
+| ¿jQuery vs vanilla JS? | Vanilla: sin librería extra, suficiente para DOM y eventos de este avance. |
+| ¿Varios HTML vs one-page? | One-page cumple el avance “Pg Inicio”; navegación por anclas es más simple. |
+| ¿Inline CSS vs archivo externo? | Externo: mantenimiento, caché del navegador, separación de responsabilidades. |
+| ¿Inline JS vs `main.js`? | Externo: mismo beneficio; HTML más limpio. |
+| ¿`<div>` vs `<section>`? | `<section>` tiene significado semántico para bloques temáticos (servicios, video). |
+| ¿Pixel perfect vs responsive? | Responsive con `clamp`, grid y media queries; prioriza adaptarse a móvil/tablet. |
+| ¿CDN imágenes vs locales? | Casi todo local en `assets/`; solo avatares de testimonios en Unsplash. |
+| ¿SQL vs sin BD? | Sin backend no hay persistencia; contenido embebido en HTML. |
+| ¿Git vs solo carpeta? | Git versiona cambios; `.gitignore` excluye docs personales como este archivo. |
+
+---
+
+### 11.5 Errores que NO debes cometer en la defensa
+
+1. Decir que HTML “programa” la lógica del menú → **lo hace JavaScript**.
+2. Confundir **sección** con **página** → es 1 HTML, 6 secciones.
+3. No saber para qué sirve un `id` que tú mismo pusiste (`menuToggle`, `backToTop`).
+4. Decir que hay base de datos porque “hay datos de clientes” → están **escritos en HTML**, no en BD.
+5. No poder explicar **una** función propia (`closeMenu`, `updateActiveNav`, etc.).
+6. Afirmar que sin JS no se ve nada → **sí se ve**; solo pierde interactividad.
+7. Confundir **wireframe** (boceto) con la **página terminada** (implementación).
+8. Decir “responsive es hacer la página más pequeña” → es **reorganizar layout** (grid, menú hamburguesa, etc.).
+
+---
+
+### 11.6 Mini simulacro (30 segundos por respuesta)
+
+Practica en voz alta:
+
+1. **“¿Qué hace tu JavaScript?”** → Menú móvil, scroll suave sin hash, nav activo, reveal al scroll, botón volver arriba.
+2. **“¿Dónde están los 3 servicios?”** → Sección `#servicios`, tres `<article class="service-card">` en grid.
+3. **“¿Cómo es el footer?”** → Tres columnas: redes+UTP, contacto integrante, logos del rubro (PwC, EY, KPMG).
+4. **“¿Qué es una variable en tu código?”** → Ejemplo: `const nav = document.getElementById('nav')` guarda referencia al menú.
+5. **“¿Condicional en tu JS?”** → `if (entry.isIntersecting)` para mostrar animación reveal.
+6. **“¿Bucle en tu JS?”** → `navLinks.forEach(...)` para marcar enlace activo.
+7. **“¿Por qué no hay BD?”** → Sitio estático de presentación, sin login ni formularios que guarden datos.
+
+---
+
+## 10. Resumen rápido del temario (chuleta)
+
+| Tema | Respuesta en una línea (proyecto CNJ) |
+|------|----------------------------------------|
+| Variables | `const nav`, `let currentId` — guardan referencias DOM y estado |
+| Tipos de datos | String, Number, Boolean, Object, NodeList en JS |
+| Funciones | `closeMenu`, `scrollToInicio`, `updateActiveNav`, etc. |
+| Secuencial | Código de main.js se ejecuta línea por línea al cargar |
+| Condicional | `if (nav && menuToggle)`, `if (id === 'inicio')`, toggles |
+| Repetitiva | `.forEach()` en enlaces, secciones, navLinks, entries |
+| HTML | Estructura semántica en index.html |
+| CSS | Estilos, grid/flex, responsive en styles.css |
+| JavaScript | Menú, scroll, observer en main.js |
+| Base de datos | No aplica — sitio estático sin backend |
+| Mapa de sitio | 6 secciones ancladas en una sola página |
+| Wireframe | Layout vertical: header → secciones → footer |
+| Página web | Landing estática CNJ, 3 capas HTML+CSS+JS |
+
+---
+
 *Documento elaborado por Jesús Manuel Mechan Gonzales — UTP, Marcos de Desarrollo Web 48308, 2026.*
