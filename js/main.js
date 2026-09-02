@@ -3,6 +3,27 @@ const nav = document.getElementById('nav');
 const backToTop = document.getElementById('backToTop');
 const header = document.querySelector('.header');
 const navLinks = document.querySelectorAll('.nav__link');
+const inicioSection = document.getElementById('inicio');
+
+const closeMenu = () => {
+  if (nav && menuToggle) {
+    nav.classList.remove('nav--open');
+    menuToggle.classList.remove('is-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+};
+
+const clearHash = () => {
+  history.replaceState(null, '', window.location.pathname + window.location.search);
+};
+
+const scrollToInicio = () => {
+  if (inicioSection) {
+    inicioSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
 if (menuToggle && nav) {
   menuToggle.addEventListener('click', () => {
@@ -18,19 +39,22 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener('click', (event) => {
     const href = link.getAttribute('href');
     const id = href && href.slice(1);
+
+    if (id === 'inicio') {
+      event.preventDefault();
+      scrollToInicio();
+      closeMenu();
+      clearHash();
+      return;
+    }
+
     const target = id && document.getElementById(id);
     if (!target) return;
 
     event.preventDefault();
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    if (nav && menuToggle) {
-      nav.classList.remove('nav--open');
-      menuToggle.classList.remove('is-open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-    }
-
-    history.replaceState(null, '', window.location.pathname + window.location.search);
+    closeMenu();
+    clearHash();
   });
 });
 
@@ -42,8 +66,8 @@ if (backToTop) {
 
   backToTop.addEventListener('click', (event) => {
     event.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    history.replaceState(null, '', window.location.pathname + window.location.search);
+    scrollToInicio();
+    clearHash();
   });
 
   window.addEventListener('scroll', updateBackToTop, { passive: true });
