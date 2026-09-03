@@ -10,6 +10,7 @@ const closeMenu = () => {
     nav.classList.remove('nav--open');
     menuToggle.classList.remove('is-open');
     menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Abrir menú');
   }
 };
 
@@ -30,6 +31,27 @@ if (menuToggle && nav) {
     const open = nav.classList.toggle('nav--open');
     menuToggle.classList.toggle('is-open', open);
     menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  });
+
+  // Si se pasa a desktop, cerrar menú móvil abierto
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) closeMenu();
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!nav.classList.contains('nav--open')) return;
+    if (nav.contains(event.target) || menuToggle.contains(event.target)) return;
+    closeMenu();
+    menuToggle.setAttribute('aria-label', 'Abrir menú');
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('nav--open')) {
+      closeMenu();
+      menuToggle.setAttribute('aria-label', 'Abrir menú');
+      menuToggle.focus();
+    }
   });
 }
 

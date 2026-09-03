@@ -142,23 +142,42 @@ footer[id] {
   align-items: center;
 }
 
-.header__inner { justify-content: space-between; gap: 1.5rem; padding: 0.9rem 0; }
-.logo { gap: 0.75rem; flex-shrink: 0; }
+.header__inner {
+  position: relative;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+}
+
+.logo {
+  gap: 0.75rem;
+  flex-shrink: 1;
+  min-width: 0;
+}
 
 .logo__img {
   width: 52px;
   height: 52px;
   object-fit: contain;
   border-radius: 8px;
+  flex-shrink: 0;
   transition: transform 0.3s var(--ease-out);
 }
 
 .logo:hover .logo__img { transform: scale(1.05); }
-.logo__text { display: flex; flex-direction: column; line-height: 1.2; }
-.logo__name { font-size: 1rem; font-weight: 700; color: var(--navy); }
+.logo__text { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+.logo__name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .logo__tagline { font-size: 0.72rem; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; }
 
-.nav { gap: 1.5rem; }
+.nav { gap: 1.5rem; flex-shrink: 0; }
+.header__actions { flex-shrink: 0; }
 
 .nav__link {
   position: relative;
@@ -558,6 +577,12 @@ footer[id] {
 .back-to-top:hover,
 .back-to-top.is-visible:hover { background: var(--gold); color: var(--navy); transform: translateY(-3px); }
 
+@media (max-width: 1100px) {
+  .nav { gap: 1rem; }
+  .nav__link { font-size: 0.86rem; }
+  .header__actions .btn-cta { padding: 0.7rem 1.15rem; font-size: 0.88rem; }
+}
+
 @media (max-width: 1024px) {
   .services__grid { grid-template-columns: 1fr 1fr; }
   .about__values { grid-template-columns: repeat(2, 1fr); }
@@ -566,39 +591,78 @@ footer[id] {
   .footer__main .footer__col:first-child { grid-column: 1 / -1; }
 }
 
-@media (max-width: 768px) {
+/* Hamburguesa antes de que logo + 6 links + CTA se amontonen en tablet */
+@media (max-width: 900px) {
   .nav { display: none; }
 
   .nav--open {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    gap: 0.15rem;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 0.35rem);
     left: 0;
     right: 0;
+    z-index: 110;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
-    padding: 1.25rem;
-    border-bottom: 1px solid var(--border);
-    box-shadow: var(--shadow);
+    padding: 0.85rem 1rem 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
     animation: fadeInUp 0.35s var(--ease-out) both;
   }
 
+  .nav--open .nav__link {
+    padding: 0.85rem 0.65rem;
+    font-size: 1rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .nav--open .nav__link::after { display: none; }
+
+  .nav--open .nav__link:hover,
+  .nav--open .nav__link--active {
+    background: var(--gray);
+  }
+
   .menu-toggle { display: flex; }
+  .header__actions .btn-cta { display: none; }
+  .logo__img { width: 44px; height: 44px; }
+  .logo__name { font-size: 0.92rem; }
+}
+
+@media (max-width: 768px) {
   .services__grid,
   .testimonials__grid { grid-template-columns: 1fr; }
   .footer__main { grid-template-columns: 1fr; gap: 2rem; }
   .footer__main .footer__col:first-child { grid-column: auto; }
   .about, .services, .testimonials, .video-section { padding: 4.5rem 0; }
   .about__intro { margin-bottom: 2.25rem; }
-  .cover { min-height: 520px; }
+  .cover { min-height: min(520px, 85vh); }
+  .cover__inner { padding-block: 3.5rem; }
   .cover__overlay { background: linear-gradient(180deg, rgba(26, 37, 51, 0.9) 0%, rgba(36, 52, 71, 0.75) 100%); }
   .cover__actions { flex-direction: column; align-items: stretch; }
   .cover__actions .btn { width: 100%; }
+  .cover__text { font-size: 1rem; }
+  .section-header { margin-bottom: 2.25rem; }
+  .back-to-top {
+    right: 1rem;
+    bottom: 1rem;
+    width: 44px;
+    height: 44px;
+  }
 }
 
 @media (max-width: 480px) {
   .about__intro p { font-size: 1rem; }
   .about__values { grid-template-columns: 1fr; }
-  .header__actions .btn-cta { display: none; }
+  .container { width: min(1120px, 94%); }
+  .logo__tagline { display: none; }
+  .logo__name { font-size: 0.86rem; }
+  .logo__img { width: 40px; height: 40px; }
+  .cover__eyebrow { font-size: 0.8rem; }
+  .service-card__image { height: 160px; }
+  .footer__utp-inline { align-items: flex-start; }
 }
