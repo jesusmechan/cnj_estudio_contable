@@ -4,6 +4,11 @@ const backToTop = document.getElementById('backToTop');
 const header = document.querySelector('.header');
 const navLinks = document.querySelectorAll('.nav__link');
 const inicioSection = document.getElementById('inicio');
+const currentYear = document.getElementById('currentYear');
+
+if (currentYear) {
+  currentYear.textContent = new Date().getFullYear();
+}
 
 const closeMenu = () => {
   if (nav && menuToggle) {
