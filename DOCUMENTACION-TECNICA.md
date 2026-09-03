@@ -57,20 +57,76 @@ A continuación se explica **cada sección** con su HTML, CSS y JavaScript. Así
 
 ### 2.1 Cabecera del documento (`<head>`)
 
-Antes del contenido visible, el `<head>` prepara metadatos y recursos externos.
+Antes del contenido visible, el `<head>` prepara metadatos, SEO y recursos externos.
+
+#### Metadatos básicos
 
 | Elemento | Qué hace y por qué está |
 |----------|-------------------------|
 | `lang="es"` | Indica que el contenido está en español (accesibilidad y SEO). |
 | `<meta charset="UTF-8">` | Permite tildes, eñes y caracteres especiales sin errores. |
 | `<meta name="viewport">` | Clave para responsive: el ancho se adapta al dispositivo. |
-| `<meta name="description">` | Texto que Google puede mostrar en resultados de búsqueda. |
-| `<title>` | Título de la pestaña del navegador. |
+| `<meta name="description">` | Texto que Google muestra en resultados de búsqueda (~155 caracteres con keywords del rubro). |
+| `<meta name="robots">` | `index, follow` indica a buscadores que indexen la página y sigan los enlaces. |
+| `<meta name="author">` | Identifica al autor del sitio (Jesús Manuel Mechan Gonzales). |
+| `<meta name="theme-color">` | Color `#243447` (navy) que Chrome y navegadores móviles usan en la barra de dirección. |
+| `<meta name="format-detection">` | Evita que iOS detecte automáticamente teléfonos y correos como enlaces. |
+| `<title>` | Título de la pestaña — incluye marca + tagline para SEO. |
 | Favicon (`logo3.png`) | Icono pequeño en la pestaña y al guardar favoritos. |
+
+#### Open Graph (Facebook, LinkedIn, WhatsApp)
+
+Etiquetas `og:` que controlan cómo se ve el enlace al compartirlo en redes sociales:
+
+| Meta | Valor | Propósito |
+|------|-------|-----------|
+| `og:locale` | `es_PE` | Idioma y región del contenido |
+| `og:type` | `website` | Tipo de recurso |
+| `og:title` | Título de la marca | Encabezado al compartir |
+| `og:description` | Resumen de servicios | Texto bajo el título |
+| `og:image` | `assets/portada.jpg` | Vista previa visual |
+| `og:image:alt` | Texto alternativo | Accesibilidad de la imagen |
+| `og:site_name` | Nombre del sitio | Identificador de marca |
+
+#### Twitter Card
+
+Etiquetas `twitter:` para la tarjeta de previsualización en X (Twitter):
+
+| Meta | Valor |
+|------|-------|
+| `twitter:card` | `summary_large_image` — tarjeta con imagen grande |
+| `twitter:title` | Mismo título de la marca |
+| `twitter:description` | Resumen corto del servicio |
+| `twitter:image` | `assets/portada.jpg` |
+
+#### Datos estructurados (JSON-LD / Schema.org)
+
+Un bloque `<script type="application/ld+json">` que Google lee para entender qué tipo de negocio es:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "AccountingService",
+  "name": "CNJ - Integridad Contable",
+  "serviceType": ["Gestión Tributaria SUNAT", "Contabilidad Integral", "Asesoría Financiera"],
+  "sameAs": ["facebook.com/...", "instagram.com/...", "linkedin.com/..."]
+}
+```
+
+- **`@type: AccountingService`** — tipo específico de negocio contable en Schema.org.
+- **`serviceType`** — lista los 3 servicios para Google Knowledge Panel.
+- **`sameAs`** — vincula redes sociales para unificar la presencia digital.
+- También incluye `logo`, `email`, `areaServed` y `slogan`.
+
+#### Recursos externos
+
+| Recurso | Detalle |
+|---------|---------|
 | `preconnect` a Google Fonts | Acelera la carga de la tipografía conectando antes al servidor. |
+| Google Fonts (Fira Sans) | Tipografía sans-serif moderna, legible y profesional. |
 | `css/styles.css` | Toda la apariencia visual del sitio. |
 
-**Tipografía elegida:** *Fira Sans* — sans-serif moderna, legible y profesional, acorde a una firma contable.
+**Tipografía elegida:** *Fira Sans* — acorde a una firma contable profesional.
 
 ---
 
@@ -684,17 +740,186 @@ Offset de 120px en `updateActiveNav` compensa la altura del header sticky.
 | **Video** | `<video>` nativo MP4 local, layout 2 cols, lista complementaria. Fondo gris alternado. |
 | **Clientes** | 2 testimonios con rubro, cita, avatar. Grid 2→1 en móvil. |
 | **Footer** | 3 columnas (redes+UTP, contacto, rubro), mailto, enlaces externos seguros. |
-| **JS global** | Menú, scroll sin hash, observer, nav activo — todo vanilla, sin librerías. |
+| **JS global** | Menú, scroll sin hash, observer, nav activo, año dinámico — todo vanilla, sin librerías. |
+| **SEO** | Meta description, Open Graph, Twitter Card, JSON-LD (AccountingService), lazy loading, fetchpriority, `<main>`, skip link. |
 
 ---
 
-## 9. Preguntas y respuestas (temario del curso)
+## 9. SEO y buenas prácticas implementadas
+
+Esta sección documenta todas las optimizaciones de **posicionamiento web (SEO)** y **buenas prácticas de desarrollo** aplicadas al proyecto.
+
+---
+
+### 9.1 ¿Qué es SEO?
+
+**Search Engine Optimization** — conjunto de técnicas para que una página aparezca en las primeras posiciones de buscadores como Google. Se divide en:
+
+- **SEO on-page:** lo que se controla dentro del HTML (metadatos, semántica, rendimiento, accesibilidad).
+- **SEO off-page:** backlinks, presencia en redes, reputación externa (no aplica en este avance estático).
+
+---
+
+### 9.2 Metadatos SEO implementados en `<head>`
+
+| Etiqueta | Valor | Para qué sirve |
+|----------|-------|-----------------|
+| `<meta name="description">` | Descripción con keywords naturales | Google la muestra como snippet en resultados de búsqueda |
+| `<meta name="robots">` | `index, follow` | Permite que los bots indexen la página y sigan los enlaces |
+| `<meta name="author">` | Nombre del estudiante | Identifica al creador del contenido |
+| `<meta name="theme-color">` | `#243447` (navy) | Color de la barra del navegador en Android/Chrome |
+| `<meta name="format-detection">` | Desactiva autodetección | Evita que iOS convierta números y correos en links automáticos |
+
+**Buenas prácticas aplicadas:**
+- La `description` tiene ~155 caracteres (longitud óptima para snippet de Google).
+- Incluye **keywords naturales** del rubro: "contabilidad", "SUNAT", "libros electrónicos", "asesoría financiera", "MYPE", "Perú".
+- El `<title>` combina marca + tagline: `CNJ - Integridad Contable | Confianza y Precisión`.
+
+---
+
+### 9.3 Open Graph y Twitter Card
+
+Controlan cómo se ve la página al compartir el enlace en redes sociales:
+
+**Open Graph** (Facebook, LinkedIn, WhatsApp):
+```html
+<meta property="og:locale" content="es_PE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CNJ - Integridad Contable | Confianza y Precisión">
+<meta property="og:description" content="Servicios contables... para empresas en Perú.">
+<meta property="og:image" content="assets/portada.jpg">
+<meta property="og:site_name" content="CNJ - Integridad Contable">
+```
+
+**Twitter Card** (X):
+```html
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="...">
+<meta name="twitter:description" content="...">
+<meta name="twitter:image" content="assets/portada.jpg">
+```
+
+Sin estas etiquetas, al compartir el link se vería solo la URL. Con ellas se muestra una **tarjeta visual** con imagen, título y descripción.
+
+---
+
+### 9.4 Datos estructurados (JSON-LD / Schema.org)
+
+Bloque `<script type="application/ld+json">` que Google lee para entender el tipo de negocio:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "AccountingService",
+  "name": "CNJ - Integridad Contable",
+  "serviceType": [
+    "Gestión y Declaración Tributaria SUNAT",
+    "Contabilidad Integral y Libros Electrónicos",
+    "Asesoría Financiera y Planificación Fiscal"
+  ],
+  "sameAs": ["facebook.com/...", "instagram.com/...", "linkedin.com/..."]
+}
+```
+
+| Propiedad | Propósito |
+|-----------|-----------|
+| `@type: AccountingService` | Google identifica el sitio como firma contable |
+| `serviceType` | Lista los 3 servicios para el Knowledge Panel |
+| `sameAs` | Vincula las redes sociales de la empresa |
+| `logo`, `image` | Imágenes de la marca para resultados enriquecidos |
+| `areaServed` | Región de operación (Perú) |
+| `slogan` | Lema "Confianza y Precisión" |
+
+**Beneficio:** Google puede mostrar resultados enriquecidos (rich snippets) con logo, servicios y redes al buscar "CNJ Integridad Contable".
+
+---
+
+### 9.5 Semántica HTML y accesibilidad (afectan SEO)
+
+Google premia las páginas bien estructuradas y accesibles:
+
+| Práctica | Implementación | Beneficio SEO |
+|----------|----------------|---------------|
+| Un solo `<h1>` por página | El título del hero | Google identifica el tema principal |
+| Jerarquía de encabezados | `<h1>` → `<h2>` → `<h3>` sin saltos | Estructura clara para rastreo |
+| Etiquetas semánticas | `<header>`, `<main>`, `<nav>`, `<section>`, `<article>`, `<footer>` | Bots entienden la estructura |
+| Landmark `<main>` | Envuelve todo el contenido entre header y footer | Indica dónde está el contenido principal |
+| Enlace "Saltar al contenido" | `<a href="#contenido-principal" class="sr-only">` | Accesibilidad y WCAG; visible solo al foco de teclado |
+| `alt` descriptivo en imágenes | "Gestión y Declaración Tributaria SUNAT" en vez de "imagen1" | Google Images indexa el texto alternativo |
+| `aria-label` en botones/video | Menú, volver arriba, video | Lectores de pantalla pueden describir elementos |
+| `aria-expanded` en hamburguesa | JS lo actualiza dinámicamente | Estado del menú comunicado a tecnologías asistivas |
+
+---
+
+### 9.6 Rendimiento (Core Web Vitals → afecta ranking)
+
+Google usa métricas de rendimiento para posicionar páginas. Optimizaciones aplicadas:
+
+| Técnica | Dónde | Qué mejora |
+|---------|-------|------------|
+| `fetchpriority="high"` | Imagen del hero (`portada.jpg`) | **LCP** — el navegador prioriza la descarga de la imagen más importante |
+| `loading="lazy"` | Todas las imágenes fuera del viewport inicial (servicios, testimonios, footer) | **Carga inicial** — no descarga lo que no se ve; ahorra datos |
+| `decoding="async"` | Mismas imágenes lazy | **Render** — decodifica en background sin bloquear el hilo principal |
+| `preconnect` a Google Fonts | `<link rel="preconnect">` | **FCP** — conexión anticipada reduce latencia de la tipografía |
+| `preload="metadata"` en `<video>` | Solo carga duración/poster, no el video completo | **Peso inicial** — el MP4 solo se descarga al dar play |
+| CSS externo (no inline) | Un solo archivo `styles.css` | **Caché** — el navegador lo guarda; en visitas sucesivas no lo vuelve a descargar |
+| JS al final del `<body>` | `<script src="js/main.js">` | **Render** — el HTML y CSS se pintan sin esperar a JavaScript |
+| `referrerpolicy="no-referrer"` | Avatares de Unsplash | **Privacidad y velocidad** — no envía la URL del sitio al servidor externo |
+
+**Métricas clave de Google (Core Web Vitals):**
+- **LCP** (Largest Contentful Paint) — cuánto tarda en pintarse el contenido principal → `fetchpriority="high"` ayuda.
+- **FID/INP** (Interaction to Next Paint) — respuesta a interacciones → JS liviano y `{ passive: true }` en scroll.
+- **CLS** (Cumulative Layout Shift) — saltos visuales → las imágenes tienen `max-width: 100%; height: auto` para no "empujar" contenido.
+
+---
+
+### 9.7 Seguridad y enlaces externos
+
+| Práctica | Implementación | Propósito |
+|----------|----------------|-----------|
+| `target="_blank"` + `rel="noopener noreferrer"` | Todos los enlaces externos (redes, UTP, PwC, EY, KPMG) | La pestaña nueva no puede acceder a `window.opener`; no envía referrer |
+| HTTPS en enlaces | Todas las URLs externas usan `https://` | Seguridad en la navegación del usuario |
+
+---
+
+### 9.8 Año dinámico en copyright
+
+```html
+<p>&copy; <span id="currentYear"></span> CNJ - Integridad Contable...</p>
+```
+```javascript
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+```
+
+El año se actualiza **automáticamente** sin editar HTML. Si JavaScript está desactivado, el `<span>` queda vacío pero el copyright sigue legible.
+
+---
+
+### 9.9 Qué falta para producción (fuera del avance)
+
+Estas mejoras aplicarían si el sitio se despliega con dominio propio:
+
+| Mejora | Descripción |
+|--------|-------------|
+| `<link rel="canonical">` | URL canónica para evitar contenido duplicado (requiere dominio real) |
+| `robots.txt` | Indica a bots qué pueden y qué no pueden rastrear |
+| `sitemap.xml` | Mapa del sitio en formato XML para Google Search Console |
+| Imágenes WebP/AVIF | Formatos más ligeros que JPG/PNG con mejor compresión |
+| Minificación CSS/JS | Reducir peso eliminando espacios y comentarios |
+| CDN | Servir recursos desde servidores distribuidos cerca del usuario |
+| HTTPS propio | Certificado SSL para el dominio (Google prioriza HTTPS) |
+| Google Search Console | Verificar indexación y monitorear errores |
+| Google Analytics | Medir tráfico, comportamiento y conversiones |
+
+---
+
+## 10. Preguntas y respuestas (temario del curso)
 
 Esta sección responde posibles preguntas del docente según el **temario de evaluación**, siempre relacionadas con el proyecto CNJ.
 
 ---
 
-### 9.1 Variables, datos e información
+### 10.1 Variables, datos e información
 
 **P: ¿Qué es una variable en programación?**  
 R: Es un espacio con nombre que guarda un valor que puede cambiar durante la ejecución del programa. En JavaScript se declara con `const` o `let`.
@@ -720,7 +945,7 @@ R: `const` declara una constante: no se puede reasignar después. Se usa para el
 
 ---
 
-### 9.2 Tipos de datos
+### 10.2 Tipos de datos
 
 **P: ¿Qué tipos de datos existen en JavaScript?**  
 R: Los principales son:
@@ -742,7 +967,7 @@ R: En HTML los datos son principalmente **texto** (contenido de párrafos, títu
 
 ---
 
-### 9.3 Métodos o funciones
+### 10.3 Métodos o funciones
 
 **P: ¿Qué es una función?**  
 R: Es un bloque de código reutilizable con un nombre que ejecuta una tarea. Puede recibir parámetros y devolver un resultado.
@@ -784,7 +1009,7 @@ Equivale a una función anónima, pero con sintaxis más corta.
 
 ---
 
-### 9.4 Estructuras de programación
+### 10.4 Estructuras de programación
 
 #### Estructura secuencial
 
@@ -871,7 +1096,7 @@ R: `forEach` es más legible cuando se recorre una lista de elementos del DOM. E
 
 ---
 
-### 9.5 Lenguajes de programación: HTML, CSS y JavaScript
+### 10.5 Lenguajes de programación: HTML, CSS y JavaScript
 
 #### HTML
 
@@ -921,7 +1146,7 @@ R: El avance pide tecnologías base del curso. El sitio es estático y pequeño;
 
 ---
 
-### 9.6 Base de datos
+### 10.6 Base de datos
 
 **P: ¿Tu proyecto usa base de datos?**  
 R: **No.** Es un sitio web **estático**: todo el contenido (textos, imágenes, video) está en archivos HTML, CSS, JS y la carpeta `assets/`. No hay login, formularios que guarden datos ni servidor backend.
@@ -937,7 +1162,7 @@ R: Una firma contable real podría usar BD para clientes, facturas y declaracion
 
 ---
 
-### 9.7 Mapa de sitio web
+### 10.7 Mapa de sitio web
 
 **P: ¿Qué es un mapa de sitio?**  
 R: Diagrama que muestra la **estructura y jerarquía** de las páginas o secciones de un sitio. Indica qué contenido existe y cómo se relaciona.
@@ -961,7 +1186,7 @@ R: Por el menú del header y enlaces internos (`href="#seccion"`). JavaScript ha
 
 ---
 
-### 9.8 Wireframe
+### 10.8 Wireframe
 
 **P: ¿Qué es un wireframe?**  
 R: **Boceto o maqueta** de baja fidelidad de una página. Define disposición de bloques (header, hero, columnas, footer) **sin colores finales ni imágenes reales**. Es el plano antes del diseño visual.
@@ -996,7 +1221,7 @@ R: El wireframe define **posición**; el CSS aplica **identidad visual** (navy, 
 
 ---
 
-### 9.9 Página web
+### 10.9 Página web
 
 **P: ¿Qué es una página web?**  
 R: Documento o conjunto de documentos accesibles por navegador vía HTTP/HTTPS. Puede ser estática (archivos fijos) o dinámica (contenido generado por servidor/BD).
@@ -1285,7 +1510,7 @@ Practica en voz alta:
 
 ---
 
-## 10. Resumen rápido del temario (chuleta)
+## 12. Resumen rápido del temario (chuleta)
 
 | Tema | Respuesta en una línea (proyecto CNJ) |
 |------|----------------------------------------|
@@ -1302,6 +1527,7 @@ Practica en voz alta:
 | Mapa de sitio | 6 secciones ancladas en una sola página |
 | Wireframe | Layout vertical: header → secciones → footer |
 | Página web | Landing estática CNJ, 3 capas HTML+CSS+JS |
+| SEO | Meta tags, OG, Twitter Card, JSON-LD, lazy loading, fetchpriority, semántica, skip link |
 
 ---
 
