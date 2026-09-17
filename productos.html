@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo de más de 20 productos y servicios contables de CNJ - Integridad Contable: SUNAT, planillas, NIIF, auditoría y más.">
+  <title>Productos y servicios | CNJ - Integridad Contable</title>
+  <link rel="icon" type="image/png" href="assets/logo3.png">
+  <link rel="apple-touch-icon" href="assets/logo3.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#243447",
+            gold: "#c9a227",
+            "gold-700": "#a6851c",
+          },
+          fontFamily: {
+            sans: ["Fira Sans", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="css/styles.css?v=10">
+</head>
+<body class="bg-white font-sans text-slate-800">
+
+  <div class="hidden">
+    <span class="absolute inset-0 bg-gradient-to-r from-[#243447]/90 via-[#243447]/55 to-transparent h-full w-full object-cover p-6 md:p-10 max-w-xl text-white mb-3 inline-block rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-2xl font-bold md:text-3xl mt-2 hidden text-white/85 md:block mt-3 text-lg font-semibold text-[#dbb84a] h-2.5 w-2.5 rounded-full bg-white bg-white/40 slider-slide is-active transition-opacity duration-500 grid gap-6 sm:grid-cols-2 xl:grid-cols-4 group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:-translate-y-1 hover:shadow-xl overflow-hidden h-44 w-full object-cover duration-500 group-hover:scale-105 flex-1 p-5 mb-2 w-fit bg-amber-50 text-[11px] text-amber-800 text-base leading-snug text-[#243447] mt-2 text-sm leading-relaxed text-slate-500 mt-4 items-center justify-between gap-3 text-sm font-bold text-[#a6851c] inline-flex rounded-full bg-[#c9a227] px-3 py-1.5 text-white hover:bg-[#a6851c] bg-[#243447] text-white border-[#243447] bg-[#f3f4f6] border-transparent hover:border-[#c9a227] rounded-full border px-3.5 py-1.5 font-semibold transition opacity-50 cursor-not-allowed bg-gold text-white bg-white hidden"></span>
+  </div>
+
+  <header class="header sticky top-0 z-50 border-b border-transparent bg-white/95 backdrop-blur">
+    <nav class="relative mx-auto flex max-w-6xl items-center justify-between gap-4 px-[4%] py-3">
+      <a href="index.html" class="flex min-w-0 items-center gap-3">
+        <img src="assets/logo3.png" alt="Logo CNJ Integridad Contable" class="h-12 w-12 rounded-lg object-contain">
+        <span class="min-w-0">
+          <span class="block truncate font-bold text-navy">CNJ - Integridad Contable</span>
+          <span class="hidden text-xs tracking-wide text-slate-500 sm:block">Confianza y Precisión</span>
+        </span>
+      </a>
+
+      <button id="menuToggle" class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white xl:hidden" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span class="flex flex-col gap-1.5">
+          <span class="block h-0.5 w-5 bg-navy"></span>
+          <span class="block h-0.5 w-5 bg-navy"></span>
+        </span>
+      </button>
+
+      <div id="navbarMain" class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-1 rounded-xl border border-slate-200 bg-white p-3 shadow-xl xl:static xl:flex xl:flex-row xl:items-center xl:gap-5 xl:border-0 xl:bg-transparent xl:p-0 xl:shadow-none">
+        <a href="index.html#inicio" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Inicio</a>
+        <a href="index.html#empresa" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Nosotros</a>
+        <a href="index.html#servicios" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Servicios</a>
+        <a href="productos.html" class="nav-link active rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0" aria-current="page">Productos</a>
+        <a href="index.html#video" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Video</a>
+        <a href="index.html#clientes" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Clientes</a>
+        <a href="index.html#contacto" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Contacto</a>
+        <a href="index.html#contacto" class="mt-1 inline-flex items-center justify-center rounded-full bg-gold px-5 py-2 text-sm font-semibold text-white transition hover:bg-gold-700 xl:mt-0">Contáctenos</a>
+      </div>
+    </nav>
+  </header>
+
+  <section id="inicio" class="slider-shell" aria-label="Galería destacada">
+    <div class="slider-viewport">
+      <div id="sliderTrack" class="flex h-full transition-transform duration-500 ease-out"></div>
+    </div>
+    <button type="button" id="sliderPrev" class="slider-arrow slider-arrow--prev" aria-label="Anterior">‹</button>
+    <button type="button" id="sliderNext" class="slider-arrow slider-arrow--next" aria-label="Siguiente">›</button>
+    <div class="slider-dots-wrap">
+      <div id="sliderDots" class="slider-dots"></div>
+    </div>
+  </section>
+
+  <section class="catalog-section" id="catalogo">
+    <div class="mx-auto max-w-6xl px-[4%]">
+      <div class="catalog-head">
+        <h1>Productos y servicios</h1>
+        <p>
+          Encuentra el servicio contable que necesita tu empresa.
+          <span class="results-count" id="resultsCount"></span>
+        </p>
+      </div>
+
+      <form id="searchForm" class="catalog-panel" role="search">
+        <div class="catalog-panel__row">
+          <label for="searchInput" class="sr-only">Buscar servicio</label>
+          <div class="search-field">
+            <svg class="search-field__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+              <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="search" id="searchInput" placeholder="Buscar: SUNAT, planillas, NIIF, auditoría..." autocomplete="off">
+          </div>
+          <div class="search-actions">
+            <div class="mode-switch" role="group" aria-label="Modo de búsqueda">
+              <button type="button" data-modo="dinamica" class="mode-switch__btn is-active">Dinámica</button>
+              <button type="button" data-modo="estatica" class="mode-switch__btn">Estática</button>
+            </div>
+            <div class="search-actions__btns">
+              <button type="submit" id="searchButton" class="search-form__submit">Buscar</button>
+              <button type="button" id="resetButton" class="search-form__reset" title="Limpiar filtros">Limpiar</button>
+            </div>
+          </div>
+        </div>
+        <p class="catalog-panel__hint" id="searchHint">Búsqueda dinámica: el catálogo se actualiza mientras escribes.</p>
+        <div>
+          <p class="catalog-panel__label">Filtrar por área</p>
+          <div class="catalog-cats" id="categoryFilters" role="group" aria-label="Categorías"></div>
+        </div>
+      </form>
+
+      <div class="catalog-grid" id="productosGrid"></div>
+
+      <div class="empty-state hidden" id="emptyState">
+        <h3>No se encontraron servicios</h3>
+        <p>Prueba con otro término o cambia de categoría.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="relative border-t border-slate-200 bg-white pt-16" id="contacto">
+    <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-gold via-[#dbb84a] to-transparent"></div>
+    <div class="mx-auto grid max-w-6xl gap-10 px-[4%] pb-10 lg:grid-cols-3">
+      <div>
+        <a href="index.html" class="mb-5 inline-flex items-center gap-3">
+          <img src="assets/logo3.png" alt="Logo CNJ" class="h-12 w-12 rounded-lg object-contain">
+          <span>
+            <span class="block font-bold text-navy">CNJ - Integridad Contable</span>
+            <span class="text-xs text-slate-500">Confianza y Precisión</span>
+          </span>
+        </a>
+        <p class="mb-2 mt-6 text-sm text-slate-500">Redes sociales</p>
+        <div class="mb-6 flex gap-2">
+          <a href="https://www.facebook.com/CNJIntegridadContable" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f6f4ef]" aria-label="Facebook">
+            <img src="assets/red-facebook.png" alt="" class="h-5 w-5">
+          </a>
+          <a href="https://www.instagram.com/cnjintegridadcontable" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f6f4ef]" aria-label="Instagram">
+            <img src="assets/red-instagram.png" alt="" class="h-5 w-5">
+          </a>
+          <a href="https://www.linkedin.com/company/cnj-integridad-contable" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f6f4ef]" aria-label="LinkedIn">
+            <img src="assets/red-linkedin.png" alt="" class="h-5 w-5">
+          </a>
+        </div>
+        <a href="https://www.utp.edu.pe" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3">
+          <img src="assets/logo_utp.png" alt="Logo Universidad Tecnológica del Perú" class="h-10 w-10 object-contain">
+          <span class="text-sm text-slate-500">
+            <strong class="block text-navy">Universidad Tecnológica del Perú</strong>
+            Marcos de Desarrollo Web — 48308
+          </span>
+        </a>
+      </div>
+      <div>
+        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-navy">Contacto integrante</h4>
+        <ul class="space-y-4">
+          <li>
+            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-gold">Nombre</span>
+            <span>Jesús Manuel Mechan Gonzales</span>
+          </li>
+          <li>
+            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-gold">Correo</span>
+            <a href="mailto:u24254910@utp.edu.pe" class="hover:text-gold">u24254910@utp.edu.pe</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-navy">Páginas del rubro</h4>
+        <div class="flex flex-col gap-3">
+          <a href="https://www.pwc.com/pe.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-semibold text-navy hover:text-gold">
+            <img src="assets/logo_pwc.png" alt="Logo PwC Perú" class="h-9 w-9 object-contain">
+            <span>PwC Perú</span>
+          </a>
+          <a href="https://www.ey.com/es_pe" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-semibold text-navy hover:text-gold">
+            <img src="assets/logo_ey.png" alt="Logo EY Perú" class="h-9 w-9 object-contain">
+            <span>EY Perú</span>
+          </a>
+          <a href="https://kpmg.com/pe/es/home.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-semibold text-navy hover:text-gold">
+            <img src="assets/logo_kpmg.png" alt="Logo KPMG Perú" class="h-9 w-9 object-contain">
+            <span>KPMG Perú</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="bg-[#f6f4ef] py-4 text-center text-sm text-slate-500">
+      <p>&copy; <span id="currentYear"></span> CNJ - Integridad Contable. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <a href="#inicio" class="back-to-top fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold bg-navy text-white" id="backToTop" aria-label="Volver al inicio" title="Volver al inicio">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <script src="js/main.js?v=5"></script>
+  <script src="js/productos.js?v=11"></script>
+</body>
+</html>
