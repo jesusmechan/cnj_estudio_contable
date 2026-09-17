@@ -10,72 +10,87 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#243447",
+            gold: "#c9a227",
+            "gold-700": "#a6851c",
+          },
+          fontFamily: {
+            sans: ["Fira Sans", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="bg-[#f6f4ef] font-sans text-slate-800">
 
-  <!-- Encabezado y Título Principal -->
-  <header class="header">
-    <div class="container header__inner">
-      <a href="#inicio" class="logo">
-        <img src="assets/logo3.png" alt="Logo CNJ Integridad Contable" class="logo__img">
-        <div class="logo__text">
-          <span class="logo__name">CNJ - Integridad Contable</span>
-          <span class="logo__tagline">Confianza y Precisión</span>
-        </div>
+  <header class="header sticky top-0 z-50 border-b border-transparent bg-white/95 backdrop-blur">
+    <nav class="relative mx-auto flex max-w-6xl items-center justify-between gap-4 px-[4%] py-3">
+      <a href="index.html" class="flex min-w-0 items-center gap-3">
+        <img src="assets/logo3.png" alt="Logo CNJ Integridad Contable" class="h-12 w-12 rounded-lg object-contain">
+        <span class="min-w-0">
+          <span class="block truncate font-bold text-navy">CNJ - Integridad Contable</span>
+          <span class="hidden text-xs tracking-wide text-slate-500 sm:block">Confianza y Precisión</span>
+        </span>
       </a>
 
-      <nav class="nav" id="nav">
-        <a href="#inicio" class="nav__link nav__link--active">Inicio</a>
-        <a href="#empresa" class="nav__link">Nosotros</a>
-        <a href="#servicios" class="nav__link">Servicios</a>
-        <a href="#video" class="nav__link">Video</a>
-        <a href="#clientes" class="nav__link">Clientes</a>
-        <a href="#contacto" class="nav__link">Contacto</a>
-      </nav>
+      <button id="menuToggle" class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white xl:hidden" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span class="flex flex-col gap-1.5">
+          <span class="block h-0.5 w-5 bg-navy"></span>
+          <span class="block h-0.5 w-5 bg-navy"></span>
+        </span>
+      </button>
 
-      <div class="header__actions">
-        <a href="#contacto" class="btn btn-cta">Contáctenos</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
-          <span></span><span></span>
-        </button>
+      <div id="navbarMain" class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-1 rounded-xl border border-slate-200 bg-white p-3 shadow-xl xl:static xl:flex xl:flex-row xl:items-center xl:gap-5 xl:border-0 xl:bg-transparent xl:p-0 xl:shadow-none">
+        <a href="#inicio" class="nav-link active rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Inicio</a>
+        <a href="#empresa" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Nosotros</a>
+        <a href="#servicios" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Servicios</a>
+        <a href="productos.html" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Productos</a>
+        <a href="#video" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Video</a>
+        <a href="#clientes" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Clientes</a>
+        <a href="#contacto" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Contacto</a>
+        <a href="#contacto" class="mt-1 inline-flex items-center justify-center rounded-full bg-gold px-5 py-2 text-sm font-semibold text-white transition hover:bg-gold-700 xl:mt-0">Contáctenos</a>
       </div>
-    </div>
+    </nav>
   </header>
 
-  <!-- Portada Principal -->
-  <section class="cover" id="inicio" aria-label="Portada principal">
-    <div class="cover__bg">
-      <img src="assets/portada.jpg" alt="Equipo profesional de CNJ - Integridad Contable" class="cover__image">
-      <div class="cover__overlay"></div>
+  <section class="relative flex min-h-[72vh] items-center overflow-hidden" id="inicio" aria-label="Portada principal">
+    <div class="absolute inset-0">
+      <img src="assets/portada.jpg" alt="Equipo profesional de CNJ - Integridad Contable" class="cover__image h-full w-full object-cover object-right">
+      <div class="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/75 to-navy/30"></div>
     </div>
-
-    <div class="container cover__inner">
-      <div class="cover__content">
-        <p class="cover__eyebrow">Asesoría contable y financiera</p>
-        <h1 class="cover__title">Contabilidad con integridad para el crecimiento de tu empresa</h1>
-        <p class="cover__text">
+    <div class="relative mx-auto w-full max-w-6xl px-[4%] py-20">
+      <div class="cover__content max-w-xl">
+        <p class="mb-4 text-sm font-semibold uppercase tracking-wider text-[#dbb84a]">Asesoría contable y financiera</p>
+        <h1 class="mb-5 text-4xl font-bold leading-tight text-white md:text-5xl">Contabilidad con integridad para el crecimiento de tu empresa</h1>
+        <p class="mb-8 text-lg leading-relaxed text-white/90">
           CNJ - Integridad Contable brinda soluciones contables, tributarias y financieras
           para micro, pequeñas y medianas empresas, con un equipo profesional capacitado
           para ofrecerte un servicio óptimo.
         </p>
-        <div class="cover__actions">
-          <a href="#contacto" class="btn btn-cta">Solicitar consulta →</a>
-          <a href="#servicios" class="btn btn-ghost">Nuestros servicios</a>
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <a href="#contacto" class="inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 font-semibold text-white transition hover:bg-gold-700">Solicitar consulta →</a>
+          <a href="productos.html" class="inline-flex items-center justify-center rounded-full border-2 border-white/60 px-6 py-3 font-semibold text-white transition hover:bg-white/10">Ver catálogo de servicios</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Información de la Empresa y su Rubro -->
-  <section class="about" id="empresa">
-    <div class="container">
-      <header class="section-header">
-        <span class="section-tag">Sobre nosotros</span>
-        <h2 class="section-title">Información de la Empresa y su Rubro</h2>
+  <section class="bg-white py-20" id="empresa">
+    <div class="mx-auto max-w-6xl px-[4%]">
+      <header class="section-header mb-12 text-center">
+        <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-gold">Sobre nosotros</span>
+        <h2 class="text-3xl font-bold text-navy">Información de la Empresa y su Rubro</h2>
       </header>
 
-      <div class="about__intro">
+      <div class="about-intro mx-auto mb-12 max-w-3xl space-y-4 text-center text-lg leading-relaxed text-slate-500">
         <p>
           CNJ - Integridad Contable es una firma de consultoría y servicios contables comprometida con el
           crecimiento sostenible de las micro, pequeñas y medianas empresas. Ofrecemos soluciones en
@@ -90,175 +105,173 @@
         </p>
       </div>
 
-      <div class="about__values" aria-label="Valores de la empresa">
-        <article class="about__value">
-          <span class="about__value-num" aria-hidden="true">01</span>
-          <h3>Honestidad</h3>
-          <p>Actuamos con transparencia en cada informe y recomendación.</p>
+      <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4" aria-label="Valores de la empresa">
+        <article class="value-card rounded-xl bg-[#f6f4ef] p-6 text-center">
+          <span class="mb-2 block text-xs font-bold tracking-widest text-gold">01</span>
+          <h3 class="mb-2 font-bold text-navy">Honestidad</h3>
+          <p class="text-sm text-slate-500">Actuamos con transparencia en cada informe y recomendación.</p>
         </article>
-        <article class="about__value">
-          <span class="about__value-num" aria-hidden="true">02</span>
-          <h3>Integridad</h3>
-          <p>Priorizamos la ética profesional en todas nuestras decisiones.</p>
+        <article class="value-card rounded-xl bg-[#f6f4ef] p-6 text-center">
+          <span class="mb-2 block text-xs font-bold tracking-widest text-gold">02</span>
+          <h3 class="mb-2 font-bold text-navy">Integridad</h3>
+          <p class="text-sm text-slate-500">Priorizamos la ética profesional en todas nuestras decisiones.</p>
         </article>
-        <article class="about__value">
-          <span class="about__value-num" aria-hidden="true">03</span>
-          <h3>Profesionalismo</h3>
-          <p>Aplicamos estándares técnicos actualizados y de alta calidad.</p>
+        <article class="value-card rounded-xl bg-[#f6f4ef] p-6 text-center">
+          <span class="mb-2 block text-xs font-bold tracking-widest text-gold">03</span>
+          <h3 class="mb-2 font-bold text-navy">Profesionalismo</h3>
+          <p class="text-sm text-slate-500">Aplicamos estándares técnicos actualizados y de alta calidad.</p>
         </article>
-        <article class="about__value">
-          <span class="about__value-num" aria-hidden="true">04</span>
-          <h3>Confidencialidad</h3>
-          <p>Protegemos la información financiera de cada cliente.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3 Productos o Servicios -->
-  <section class="services" id="servicios">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Lo que ofrecemos</span>
-        <h2 class="section-title">Servicios especializados</h2>
-        <p class="section-subtitle">
-          Soluciones contables integrales adaptadas a tu negocio, con ética, precisión y transparencia.
-        </p>
-      </div>
-
-      <div class="services__grid">
-        <article class="service-card">
-          <span class="service-card__number">01</span>
-          <img src="assets/producto-1.jpg" alt="Gestión y Declaración Tributaria SUNAT" class="service-card__image">
-          <h3 class="service-card__title">Gestión y Declaración Tributaria SUNAT</h3>
-          <p class="service-card__desc">
-            Nos encargamos del cálculo, preparación y presentación puntual de tus declaraciones juradas mensuales
-            (PDT, Plame, Sire) y anuales ante la SUNAT. Evitamos multas, sanciones e inconsistencias para que tu
-            empresa opere siempre en regla y al día con sus obligaciones fiscales.
-          </p>
-          <span class="service-card__price">Desde S/ 350 / mes</span>
-        </article>
-
-        <article class="service-card">
-          <span class="service-card__number">02</span>
-          <img src="assets/producto-2.jpg" alt="Contabilidad Integral y Libros Electrónicos" class="service-card__image">
-          <h3 class="service-card__title">Contabilidad Integral y Libros Electrónicos</h3>
-          <p class="service-card__desc">
-            Procesamiento diario de comprobantes de pago, registro de ingresos y gastos, y elaboración de Estados
-            Financieros oportunos. Llevamos el control completo de tus libros contables electrónicos, garantizando
-            orden, precisión y transparencia en toda la información contable de tu negocio.
-          </p>
-          <span class="service-card__price">Desde S/ 500 / mes</span>
-        </article>
-
-        <article class="service-card">
-          <span class="service-card__number">03</span>
-          <img src="assets/producto-3.jpg" alt="Asesoría Financiera y Planificación Fiscal" class="service-card__image">
-          <h3 class="service-card__title">Asesoría Financiera y Planificación Fiscal</h3>
-          <p class="service-card__desc">
-            Diseñamos estrategias para optimizar la carga tributaria de tu empresa de forma legal y segura. Te
-            brindamos análisis contables claros que facilitan la toma de decisiones, previenen contingencias antes
-            de fiscalizaciones y ayudan a maximizar la rentabilidad de tu negocio.
-          </p>
-          <span class="service-card__price">Desde S/ 800 / mes</span>
+        <article class="value-card rounded-xl bg-[#f6f4ef] p-6 text-center">
+          <span class="mb-2 block text-xs font-bold tracking-widest text-gold">04</span>
+          <h3 class="mb-2 font-bold text-navy">Confidencialidad</h3>
+          <p class="text-sm text-slate-500">Protegemos la información financiera de cada cliente.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Video institucional -->
-  <section class="video-section" id="video">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">CNJ en acción</span>
-        <h2 class="section-title">Servicios contables con integridad</h2>
-        <p class="section-subtitle">
+  <section class="bg-[#f6f4ef] py-20" id="servicios">
+    <div class="mx-auto max-w-6xl px-[4%]">
+      <div class="section-header mb-12 text-center">
+        <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-gold">Lo que ofrecemos</span>
+        <h2 class="text-3xl font-bold text-navy">Servicios especializados</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-slate-500">Soluciones contables integrales adaptadas a tu negocio, con ética, precisión y transparencia.</p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        <article class="service-card group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+          <div class="relative">
+            <span class="absolute left-4 top-4 z-10 rounded-full bg-navy px-3 py-1 text-xs font-bold text-white">01</span>
+            <img src="assets/servicios/servicio-01.jpg" alt="Gestión y Declaración Tributaria SUNAT" class="h-44 w-full object-cover transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="mb-3 text-lg font-bold text-navy">Gestión y Declaración Tributaria SUNAT</h3>
+            <p class="mb-4 text-sm leading-relaxed text-slate-500">
+              Nos encargamos del cálculo, preparación y presentación puntual de tus declaraciones juradas mensuales
+              (PDT, Plame, Sire) y anuales ante la SUNAT.
+            </p>
+            <span class="font-bold text-gold">Desde S/ 350 / mes</span>
+          </div>
+        </article>
+
+        <article class="service-card group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+          <div class="relative">
+            <span class="absolute left-4 top-4 z-10 rounded-full bg-navy px-3 py-1 text-xs font-bold text-white">02</span>
+            <img src="assets/servicios/servicio-02.jpg" alt="Contabilidad Integral y Libros Electrónicos" class="h-44 w-full object-cover transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="mb-3 text-lg font-bold text-navy">Contabilidad Integral y Libros Electrónicos</h3>
+            <p class="mb-4 text-sm leading-relaxed text-slate-500">
+              Procesamiento diario de comprobantes de pago, registro de ingresos y gastos, y elaboración de Estados
+              Financieros oportunos.
+            </p>
+            <span class="font-bold text-gold">Desde S/ 500 / mes</span>
+          </div>
+        </article>
+
+        <article class="service-card group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+          <div class="relative">
+            <span class="absolute left-4 top-4 z-10 rounded-full bg-navy px-3 py-1 text-xs font-bold text-white">03</span>
+            <img src="assets/servicios/servicio-03.jpg" alt="Asesoría Financiera y Planificación Fiscal" class="h-44 w-full object-cover transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="mb-3 text-lg font-bold text-navy">Asesoría Financiera y Planificación Fiscal</h3>
+            <p class="mb-4 text-sm leading-relaxed text-slate-500">
+              Diseñamos estrategias para optimizar la carga tributaria de tu empresa de forma legal y segura, y facilitar
+              la toma de decisiones.
+            </p>
+            <span class="font-bold text-gold">Desde S/ 800 / mes</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="productos.html" class="inline-flex rounded-full bg-gold px-6 py-3 font-semibold text-white transition hover:bg-gold-700">Ver 20+ productos y servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20" id="video">
+    <div class="mx-auto max-w-6xl px-[4%]">
+      <div class="section-header mb-12 text-center">
+        <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-gold">CNJ en acción</span>
+        <h2 class="text-3xl font-bold text-navy">Servicios contables con integridad</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-slate-500">
           Conoce cómo CNJ - Integridad Contable acompaña a las MYPE con soluciones en tributación SUNAT,
           contabilidad integral y asesoría financiera.
         </p>
       </div>
 
-      <div class="video-section__layout">
-        <div class="video-section__player">
-          <video
-            class="video-section__video"
-            controls
-            playsinline
-            preload="metadata"
-            poster="assets/portada.jpg"
-          >
+      <div class="grid items-center gap-8 lg:grid-cols-5">
+        <div class="video-player overflow-hidden rounded-2xl border-4 border-gold shadow-xl lg:col-span-3">
+          <video class="aspect-video w-full object-cover" controls playsinline preload="metadata" poster="assets/portada.jpg">
             <source src="assets/video-cnj.mp4" type="video/mp4">
             Tu navegador no admite la reproducción de video.
           </video>
         </div>
-
-        <div class="video-section__info">
-          <h3>Lo que hacemos por tu empresa</h3>
-          <ul class="video-section__list">
-            <li>
-              <strong>Gestión tributaria SUNAT</strong>
-              <span>Declaraciones mensuales y anuales, cumplimiento fiscal y representación ante la SUNAT.</span>
+        <div class="video-info lg:col-span-2">
+          <h3 class="mb-5 text-xl font-bold text-navy">Lo que hacemos por tu empresa</h3>
+          <ul class="space-y-4">
+            <li class="border-l-4 border-gold pl-4">
+              <strong class="block text-navy">Gestión tributaria SUNAT</strong>
+              <span class="text-sm text-slate-500">Declaraciones mensuales y anuales, cumplimiento fiscal y representación ante la SUNAT.</span>
             </li>
-            <li>
-              <strong>Contabilidad integral</strong>
-              <span>Registro de operaciones, libros electrónicos y estados financieros oportunos.</span>
+            <li class="border-l-4 border-gold pl-4">
+              <strong class="block text-navy">Contabilidad integral</strong>
+              <span class="text-sm text-slate-500">Registro de operaciones, libros electrónicos y estados financieros oportunos.</span>
             </li>
-            <li>
-              <strong>Asesoría financiera</strong>
-              <span>Planificación fiscal, análisis contable y apoyo en la toma de decisiones.</span>
+            <li class="border-l-4 border-gold pl-4">
+              <strong class="block text-navy">Asesoría financiera</strong>
+              <span class="text-sm text-slate-500">Planificación fiscal, análisis contable y apoyo en la toma de decisiones.</span>
             </li>
           </ul>
-          <!-- <a href="#contacto" class="btn btn-cta">Solicitar asesoría →</a> -->
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Clientes Referenciales -->
-  <section class="testimonials" id="clientes">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Clientes referenciales</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+  <section class="bg-[#f6f4ef] py-20" id="clientes">
+    <div class="mx-auto max-w-6xl px-[4%]">
+      <div class="section-header mb-12 text-center">
+        <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-gold">Clientes referenciales</span>
+        <h2 class="text-3xl font-bold text-navy">Lo que dicen nuestros clientes</h2>
       </div>
 
-      <div class="testimonials__grid">
-        <article class="testimonial-card">
-          <p class="testimonial-card__rubro">Minimarket "Los Pinos" — Comercio minorista</p>
-          <p class="testimonial-card__desc">
+      <div class="grid gap-6 lg:grid-cols-2">
+        <article class="testimonial-card rounded-2xl border border-slate-200 bg-white p-7">
+          <p class="mb-3 text-sm font-semibold text-gold">Minimarket "Los Pinos" — Comercio minorista</p>
+          <p class="mb-4 text-sm leading-relaxed text-slate-500">
             Llevamos más de 3 años gestionando su contabilidad integral. Nos encargamos de sus declaraciones mensuales
-            y anuales ante la SUNAT, el control de inventarios desde el punto de vista contable y la elaboración de
-            sus estados financieros para la solicitud de créditos bancarios.
+            y anuales ante la SUNAT, el control de inventarios y la elaboración de estados financieros.
           </p>
-          <p class="testimonial-card__text">
+          <p class="mb-5 italic text-slate-700">
             "Gracias al Estudio Contable CNJ, mis declaraciones están siempre al día y he podido entender mejor
             los números de mi negocio para tomar decisiones. ¡Totalmente recomendados!"
           </p>
-          <div class="testimonial-card__footer">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Juan Pérez" class="testimonial-card__avatar">
-            <div class="testimonial-card__info">
-              <strong>Juan Pérez</strong>
-              <span>Dueño — Minimarket "Los Pinos"</span>
+          <div class="flex items-center gap-3 border-t border-slate-200 pt-4">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Juan Pérez" class="h-12 w-12 rounded-full object-cover">
+            <div>
+              <strong class="block text-navy">Juan Pérez</strong>
+              <span class="text-sm text-slate-500">Dueño — Minimarket "Los Pinos"</span>
             </div>
           </div>
         </article>
 
-        <article class="testimonial-card">
-          <p class="testimonial-card__rubro">Constructora Echevarría S.A.C. — Construcción e ingeniería</p>
-          <p class="testimonial-card__desc">
-            Brindamos asesoría tributaria especializada y llevamos el control contable de sus obras por proyecto.
-            Garantizamos el estricto cumplimiento de las obligaciones fiscales, incluyendo la gestión de Libros
-            Electrónicos y la atención de fiscalizaciones de la SUNAT.
+        <article class="testimonial-card rounded-2xl border border-slate-200 bg-white p-7">
+          <p class="mb-3 text-sm font-semibold text-gold">Constructora Echevarría S.A.C. — Construcción e ingeniería</p>
+          <p class="mb-4 text-sm leading-relaxed text-slate-500">
+            Brindamos asesoría tributaria especializada y llevamos el control contable de sus obras por proyecto,
+            incluyendo libros electrónicos y atención de fiscalizaciones de la SUNAT.
           </p>
-          <p class="testimonial-card__text">
+          <p class="mb-5 italic text-slate-700">
             "CNJ ha sido un socio estratégico para nosotros. Su precisión y conocimiento tributario en el sector
             construcción nos dan la tranquilidad necesaria para enfocarnos en nuestras obras."
           </p>
-          <div class="testimonial-card__footer">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=face" alt="Ing. Ana Echevarría" class="testimonial-card__avatar">
-            <div class="testimonial-card__info">
-              <strong>Ing. Ana Echevarría</strong>
-              <span>Gerente General — Constructora Echevarría S.A.C.</span>
+          <div class="flex items-center gap-3 border-t border-slate-200 pt-4">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=face" alt="Ing. Ana Echevarría" class="h-12 w-12 rounded-full object-cover">
+            <div>
+              <strong class="block text-navy">Ing. Ana Echevarría</strong>
+              <span class="text-sm text-slate-500">Gerente General — Constructora Echevarría S.A.C.</span>
             </div>
           </div>
         </article>
@@ -266,81 +279,76 @@
     </div>
   </section>
 
-  <!-- Footer — Pie de Página (3 columnas: redes+UTP | contacto integrante | 3 páginas rubro) -->
-  <footer class="footer" id="contacto">
-    <div class="container footer__main">
-      <div class="footer__col">
-        <a href="#inicio" class="logo footer__brand-logo">
-          <img src="assets/logo3.png" alt="Logo CNJ" class="logo__img">
-          <div class="logo__text">
-            <span class="logo__name">CNJ - Integridad Contable</span>
-            <span class="logo__tagline">Confianza y Precisión</span>
-          </div>
+  <footer class="relative border-t border-slate-200 bg-white pt-16" id="contacto">
+    <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-gold via-[#dbb84a] to-transparent"></div>
+    <div class="mx-auto grid max-w-6xl gap-10 px-[4%] pb-10 lg:grid-cols-3">
+      <div>
+        <a href="#inicio" class="mb-5 inline-flex items-center gap-3">
+          <img src="assets/logo3.png" alt="Logo CNJ" class="h-12 w-12 rounded-lg object-contain">
+          <span>
+            <span class="block font-bold text-navy">CNJ - Integridad Contable</span>
+            <span class="text-xs text-slate-500">Confianza y Precisión</span>
+          </span>
         </a>
-
-        <p class="footer__social-label">Redes sociales</p>
-        <div class="footer__social">
-          <a href="https://www.facebook.com/CNJIntegridadContable" target="_blank" rel="noopener noreferrer" class="footer__social-link" title="Facebook - CNJ Integridad Contable" aria-label="Facebook">
-            <img src="assets/red-facebook.png" alt="" class="footer__social-logo">
+        <p class="mb-2 mt-6 text-sm text-slate-500">Redes sociales</p>
+        <div class="mb-6 flex gap-2">
+          <a href="https://www.facebook.com/CNJIntegridadContable" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f6f4ef]" aria-label="Facebook">
+            <img src="assets/red-facebook.png" alt="" class="h-5 w-5">
           </a>
-          <a href="https://www.instagram.com/cnjintegridadcontable" target="_blank" rel="noopener noreferrer" class="footer__social-link" title="Instagram - CNJ Integridad Contable" aria-label="Instagram">
-            <img src="assets/red-instagram.png" alt="" class="footer__social-logo">
+          <a href="https://www.instagram.com/cnjintegridadcontable" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f6f4ef]" aria-label="Instagram">
+            <img src="assets/red-instagram.png" alt="" class="h-5 w-5">
           </a>
-          <a href="https://www.linkedin.com/company/cnj-integridad-contable" target="_blank" rel="noopener noreferrer" class="footer__social-link" title="LinkedIn - CNJ Integridad Contable" aria-label="LinkedIn">
-            <img src="assets/red-linkedin.png" alt="" class="footer__social-logo">
+          <a href="https://www.linkedin.com/company/cnj-integridad-contable" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f6f4ef]" aria-label="LinkedIn">
+            <img src="assets/red-linkedin.png" alt="" class="h-5 w-5">
           </a>
         </div>
-
-        <a href="https://www.utp.edu.pe" target="_blank" rel="noopener noreferrer" class="footer__utp-inline">
-          <img src="assets/logo_utp.png" alt="Logo Universidad Tecnológica del Perú">
-          <span>
-            <strong>Universidad Tecnológica del Perú</strong>
+        <a href="https://www.utp.edu.pe" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3">
+          <img src="assets/logo_utp.png" alt="Logo Universidad Tecnológica del Perú" class="h-10 w-10 object-contain">
+          <span class="text-sm text-slate-500">
+            <strong class="block text-navy">Universidad Tecnológica del Perú</strong>
             Marcos de Desarrollo Web — 48308
           </span>
         </a>
       </div>
 
-      <div class="footer__col">
-        <h4 class="footer__heading">Contacto integrante</h4>
-        <ul class="footer__contact">
+      <div>
+        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-navy">Contacto integrante</h4>
+        <ul class="space-y-4">
           <li>
-            <span class="footer__contact-label">Nombre</span>
+            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-gold">Nombre</span>
             <span>Jesús Manuel Mechan Gonzales</span>
           </li>
           <li>
-            <span class="footer__contact-label">Correo</span>
-            <a href="mailto:jesus.mechan@utp.edu.pe">u24254910@utp.edu.pe</a>
+            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-gold">Correo</span>
+            <a href="mailto:u24254910@utp.edu.pe" class="hover:text-gold">u24254910@utp.edu.pe</a>
           </li>
         </ul>
       </div>
 
-      <div class="footer__col">
-        <h4 class="footer__heading">Páginas del rubro</h4>
-        <div class="footer__rubro-logos">
-          <a href="https://www.pwc.com/pe.html" target="_blank" rel="noopener noreferrer" class="footer__rubro-link">
-            <img src="assets/logo_pwc.png" alt="Logo PwC Perú" class="footer__rubro-logo">
+      <div>
+        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-navy">Páginas del rubro</h4>
+        <div class="flex flex-col gap-3">
+          <a href="https://www.pwc.com/pe.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-semibold text-navy hover:text-gold">
+            <img src="assets/logo_pwc.png" alt="Logo PwC Perú" class="h-9 w-9 object-contain">
             <span>PwC Perú</span>
           </a>
-          <a href="https://www.ey.com/es_pe" target="_blank" rel="noopener noreferrer" class="footer__rubro-link">
-            <img src="assets/logo_ey.png" alt="Logo EY Perú" class="footer__rubro-logo">
+          <a href="https://www.ey.com/es_pe" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-semibold text-navy hover:text-gold">
+            <img src="assets/logo_ey.png" alt="Logo EY Perú" class="h-9 w-9 object-contain">
             <span>EY Perú</span>
           </a>
-          <a href="https://kpmg.com/pe/es/home.html" target="_blank" rel="noopener noreferrer" class="footer__rubro-link">
-            <img src="assets/logo_kpmg.png" alt="Logo KPMG Perú" class="footer__rubro-logo">
+          <a href="https://kpmg.com/pe/es/home.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-semibold text-navy hover:text-gold">
+            <img src="assets/logo_kpmg.png" alt="Logo KPMG Perú" class="h-9 w-9 object-contain">
             <span>KPMG Perú</span>
           </a>
         </div>
       </div>
     </div>
-
-    <div class="footer__bottom">
-      <div class="container footer__bottom-inner">
-        <p>&copy; <span id="currentYear"></span> CNJ - Integridad Contable. Todos los derechos reservados.</p>
-      </div>
+    <div class="bg-[#f6f4ef] py-4 text-center text-sm text-slate-500">
+      <p>&copy; <span id="currentYear"></span> CNJ - Integridad Contable. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <a href="#inicio" class="back-to-top" id="backToTop" aria-label="Volver al inicio" title="Volver al inicio">
+  <a href="#inicio" class="back-to-top fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold bg-navy text-white" id="backToTop" aria-label="Volver al inicio" title="Volver al inicio">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>

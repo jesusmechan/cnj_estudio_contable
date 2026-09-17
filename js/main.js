@@ -1,8 +1,8 @@
 const menuToggle = document.getElementById('menuToggle');
-const nav = document.getElementById('nav');
+const nav = document.getElementById('navbarMain');
 const backToTop = document.getElementById('backToTop');
 const header = document.querySelector('.header');
-const navLinks = document.querySelectorAll('.nav__link');
+const navLinks = document.querySelectorAll('.nav-link');
 const inicioSection = document.getElementById('inicio');
 const currentYear = document.getElementById('currentYear');
 
@@ -12,8 +12,7 @@ if (currentYear) {
 
 const closeMenu = () => {
   if (nav && menuToggle) {
-    nav.classList.remove('nav--open');
-    menuToggle.classList.remove('is-open');
+    nav.classList.remove('nav-open');
     menuToggle.setAttribute('aria-expanded', 'false');
     menuToggle.setAttribute('aria-label', 'Abrir menú');
   }
@@ -33,28 +32,24 @@ const scrollToInicio = () => {
 
 if (menuToggle && nav) {
   menuToggle.addEventListener('click', () => {
-    const open = nav.classList.toggle('nav--open');
-    menuToggle.classList.toggle('is-open', open);
+    const open = nav.classList.toggle('nav-open');
     menuToggle.setAttribute('aria-expanded', String(open));
     menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
   });
 
-  // Si se pasa a desktop, cerrar menú móvil abierto
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 900) closeMenu();
+    if (window.innerWidth >= 1280) closeMenu();
   });
 
   document.addEventListener('click', (event) => {
-    if (!nav.classList.contains('nav--open')) return;
+    if (!nav.classList.contains('nav-open')) return;
     if (nav.contains(event.target) || menuToggle.contains(event.target)) return;
     closeMenu();
-    menuToggle.setAttribute('aria-label', 'Abrir menú');
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && nav.classList.contains('nav--open')) {
+    if (event.key === 'Escape' && nav.classList.contains('nav-open')) {
       closeMenu();
-      menuToggle.setAttribute('aria-label', 'Abrir menú');
       menuToggle.focus();
     }
   });
@@ -104,13 +99,13 @@ if (backToTop) {
 
 const revealSelectors = [
   '.section-header',
-  '.about__intro',
-  '.about__value',
+  '.about-intro',
+  '.value-card',
   '.service-card',
-  '.video-section__player',
-  '.video-section__info',
+  '.video-player',
+  '.video-info',
   '.testimonial-card',
-  '.footer__col',
+  '.search-panel',
 ];
 
 document.querySelectorAll(revealSelectors.join(', ')).forEach((el) => {
@@ -138,6 +133,7 @@ if (!prefersReducedMotion) {
 }
 
 const sections = document.querySelectorAll('section[id], footer[id]');
+const isHomePage = Boolean(document.getElementById('empresa'));
 
 const updateHeader = () => {
   if (header) {
@@ -146,7 +142,7 @@ const updateHeader = () => {
 };
 
 const updateActiveNav = () => {
-  if (!navLinks.length || !sections.length) return;
+  if (!isHomePage || !navLinks.length || !sections.length) return;
 
   const scrollPos = window.scrollY + 120;
   let currentId = 'inicio';
@@ -159,7 +155,11 @@ const updateActiveNav = () => {
 
   navLinks.forEach((link) => {
     const href = link.getAttribute('href');
-    link.classList.toggle('nav__link--active', href === `#${currentId}`);
+    if (href === 'productos.html') {
+      link.classList.remove('active');
+      return;
+    }
+    link.classList.toggle('active', href === `#${currentId}`);
   });
 };
 

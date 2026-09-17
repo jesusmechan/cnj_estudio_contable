@@ -2,35 +2,38 @@
 
 ## Descripción del proyecto
 
-Sitio web corporativo de una sola página (landing) desarrollado como **Avance N°1** del curso **Marcos de Desarrollo Web (48308)** de la Universidad Tecnológica del Perú (UTP).
+Sitio web corporativo desarrollado para el curso **Marcos de Desarrollo Web (48308)** de la Universidad Tecnológica del Perú (UTP).
 
 El proyecto presenta a la empresa ficticia **CNJ - Integridad Contable**, una firma de consultoría y servicios contables orientada a micro, pequeñas y medianas empresas (MYPE) en Perú. El lema de la marca es *Confianza y Precisión*.
+
+Este repositorio incluye:
+
+- **Avance N°1:** página de inicio (`index.html`) con portada, nosotros, 3 servicios, video, clientes y footer.
+- **Avance N°2:** **Tailwind CSS**, página de **productos y servicios** (`productos.html`) con 22 ítems, imágenes únicas, slider y búsqueda estática/dinámica.
 
 ---
 
 ## Objetivo académico
 
-Cumplir los requisitos del avance de página de inicio (`Pg Inicio`), incluyendo:
-
 | Requisito | Implementación |
 |-----------|----------------|
-| Encabezado (logo + nombre) | Header con logo y nombre de empresa |
+| Framework CSS | Tailwind CSS (CDN) |
+| Encabezado (logo + nombre) | Navbar sticky con logo y nombre |
 | Portada principal (imagen) | Hero full-bleed con imagen y texto superpuesto |
-| Información empresa y rubro | Sección “Nosotros” con texto (24px) y rubro |
-| 3 productos/servicios | Tarjetas con imagen, descripción y precio |
-| Video | Video institucional local (`assets/video-cnj.mp4`) generado con marca CNJ |
-| Clientes referenciales | 2 testimonios con imagen e información |
-| Footer | 3 columnas: redes + UTP, contacto integrante (nombre/correo), 3 páginas del rubro |
+| Información empresa y rubro | Sección “Nosotros” |
+| 3 productos/servicios (inicio) | Tarjetas Tailwind con imagen, descripción y precio |
+| Página de 20+ productos | `productos.html` renderizado desde un arreglo de objetos |
+| Slider 3 a 5 | Slider con 5 servicios destacados e imágenes distintas |
+| Búsqueda | Dinámica (al escribir) y estática (botón Buscar) |
+| Video | Video institucional local (`assets/video-cnj.mp4`) |
+| Clientes referenciales | 2 testimonios |
+| Footer | Redes + UTP, contacto integrante y páginas del rubro |
 
 ---
 
 ## Empresa representada
 
-**CNJ - Integridad Contable** ofrece:
-
-1. **Gestión y Declaración Tributaria SUNAT** — desde S/ 350 / mes  
-2. **Contabilidad Integral y Libros Electrónicos** — desde S/ 500 / mes  
-3. **Asesoría Financiera y Planificación Fiscal** — desde S/ 800 / mes  
+**CNJ - Integridad Contable** ofrece servicios de contabilidad, tributación SUNAT, planillas, auditoría, constitución de empresas y asesoría financiera.
 
 **Rubro:** servicios profesionales de contabilidad, finanzas y consultoría empresarial.
 
@@ -38,73 +41,53 @@ Cumplir los requisitos del avance de página de inicio (`Pg Inicio`), incluyendo
 
 ## Estructura del sitio
 
-1. **Header** — logo, menú de navegación y botón “Contáctenos”  
-2. **Portada** — imagen de fondo, título y llamados a la acción  
-3. **Nosotros** — información de la empresa, valores y rubro  
-4. **Servicios** — tres servicios con imagen, texto y precio  
-5. **Video** — video institucional local sobre servicios de CNJ  
-6. **Clientes** — dos clientes referenciales con testimonio  
-7. **Footer** — 3 redes (logo+link), UTP, contacto integrante (nombre y correo), 3 páginas del rubro (logo+link)
+1. **Inicio** (`index.html`) — portada, nosotros, 3 servicios destacados, video, clientes y footer.
+2. **Productos** (`productos.html`) — slider, catálogo de 22 servicios, filtros y búsquedas.
 
-Para regenerar el video institucional (con narración en español y audio de fondo):
+La navegación interna de Inicio hace scroll suave **sin dejar `#` en la URL**. Productos es una página independiente.
 
-```bash
-pip install edge-tts pillow
-python scripts/generate_video.py
-```
+---
 
-La navegación hace scroll suave entre secciones **sin modificar la URL** con `#`.
+## Búsqueda (página Productos)
+
+Los servicios viven en un **arreglo de objetos** en `js/productos.js` (equivalente a un ArrayList).
+
+- **Búsqueda dinámica:** al escribir, el catálogo se filtra y se actualiza al instante.
+- **Búsqueda estática:** el resultado cambia solo al pulsar **Buscar** (o Enter).
+- También se puede filtrar por categoría (Tributario, Contabilidad, Financiero, Laboral, Auditoría, Societario, Consultoría).
 
 ---
 
 ## Estructura de archivos
 
 ```
-Avance 1/
-├── index.html          # Página principal
-├── css/
-│   └── styles.css      # Estilos y diseño responsive
-├── js/
-│   └── main.js         # Menú móvil y scroll interno
+cnj_estudio_contable/
+├── index.html
+├── productos.html
+├── css/styles.css
+├── js/main.js
+├── js/productos.js
 ├── assets/
-│   ├── logo.png / logo3.png
-│   ├── portada.jpg
-│   ├── producto-1.jpg … producto-3.jpg
-│   ├── video-cnj.mp4
-│   ├── video-slides/   # diapositivas usadas para generar el video
-│   ├── red-facebook.png / red-instagram.png / red-linkedin.png
-│   ├── logo_utp.png
-│   └── logo_pwc.png / logo_ey.png / logo_kpmg.png
-└── README.md           # Este documento
+└── README.md
 ```
 
 ---
 
 ## Tecnologías
 
-- **HTML5** — estructura semántica  
-- **CSS3** — variables CSS, flexbox, grid y media queries  
-- **JavaScript** — menú hamburguesa y navegación interna  
-- **Google Fonts** — tipografía *Fira Sans*
-
-No se utilizan frameworks; el sitio es estático y puede abrirse directamente en el navegador.
-
----
-
-## Diseño
-
-- **Paleta:** slate (`#243447`) + dorado suave (`#c9a227`)  
-- **Enfoque:** estilo corporativo de firma contable  
-- **Responsive:** adaptable a escritorio, tablet y móvil  
-- **Favicon:** `assets/logo3.png`
+- **HTML5** — estructura semántica
+- **Tailwind CSS** — layout, navbar, grid, cards, slider y formularios
+- **CSS3** — animaciones y acentos de marca (navy + gold)
+- **JavaScript** — menú, scroll, catálogo y búsquedas
+- **Google Fonts** — *Fira Sans*
 
 ---
 
 ## Cómo visualizar
 
-1. Abrir la carpeta del proyecto.  
-2. Abrir `index.html` en el navegador (doble clic o “Open with Live Server”).  
-3. No requiere instalación de dependencias ni servidor obligatorio.
+1. Abrir la carpeta del proyecto.
+2. Abrir `index.html` o `productos.html` en el navegador.
+3. No requiere instalación de dependencias. Sí se necesita conexión a internet para cargar Tailwind desde el CDN.
 
 ---
 
@@ -115,7 +98,6 @@ No se utilizan frameworks; el sitio es estático y puede abrirse directamente en
 | **Nombre** | Jesús Manuel Mechan Gonzales |
 | **Curso** | Marcos de Desarrollo Web — 48308 |
 | **Institución** | Universidad Tecnológica del Perú (UTP) |
-| **Contacto (demo)** | contacto@cnjcontable.pe / +51 987 654 321 |
 
 ---
 
