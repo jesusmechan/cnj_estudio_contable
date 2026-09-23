@@ -330,17 +330,17 @@ const renderCatalogo = () => {
   productosGrid.classList.toggle("hidden", resultados.length === 0);
 
   productosGrid.innerHTML = resultados.map((servicio) => `
-    <article class="catalog-card">
-      <div class="catalog-card__media">
-        <span class="catalog-card__num">${String(servicio.id).padStart(2, "0")}</span>
-        <img src="${servicio.imagen}" alt="${servicio.nombre}">
+    <article class="service-card group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+      <div class="relative">
+        <span class="absolute left-4 top-4 z-10 rounded-full bg-navy px-3 py-1 text-xs font-bold text-white">${String(servicio.id).padStart(2, "0")}</span>
+        <img src="${servicio.imagen}" alt="${servicio.nombre}" class="h-44 w-full object-cover transition duration-500 group-hover:scale-105">
       </div>
-      <div class="catalog-card__body">
-        <span class="catalog-card__tag">${servicio.categoria}</span>
-        <h3>${servicio.nombre}</h3>
-        <p>${servicio.descripcion}</p>
-        <div class="catalog-card__footer">
-          <span class="catalog-card__price">${formatPrecio(servicio)}</span>
+      <div class="flex flex-1 flex-col p-6">
+        <p class="mb-2 text-xs font-bold uppercase tracking-wider text-gold">${servicio.categoria}</p>
+        <h3 class="mb-3 text-lg font-bold text-navy">${servicio.nombre}</h3>
+        <p class="mb-4 flex-1 text-sm leading-relaxed text-slate-500">${servicio.descripcion}</p>
+        <div class="mt-auto flex items-center justify-between gap-3">
+          <span class="font-bold text-gold">${formatPrecio(servicio)}</span>
           <a href="index.html#contacto" class="catalog-card__cta">Solicitar</a>
         </div>
       </div>
