@@ -105,7 +105,7 @@ footer[id] { scroll-margin-top: 5.5rem; }
 .slider-shell {
   position: relative;
   width: 100%;
-  height: calc(100vh - 4.55rem);
+  height: 72vh;
   min-height: 22rem;
   background: #1a2430;
 }
