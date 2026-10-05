@@ -27,9 +27,21 @@
       },
     };
   </script>
-  <link rel="stylesheet" href="css/styles.css?v=30">
+  <link rel="stylesheet" href="css/styles.css?v=32">
 </head>
-<body class="bg-[#f6f4ef] font-sans text-slate-800">
+<body class="is-loading bg-[#f6f4ef] font-sans text-slate-800">
+
+  <div class="page-loader" id="pageLoader" role="status" aria-live="polite">
+    <div class="page-loader__inner">
+      <div class="page-loader__logo">
+        <span class="page-loader__ring" aria-hidden="true"></span>
+        <img src="assets/logo3.png" alt="">
+      </div>
+      <p class="page-loader__brand">CNJ - Integridad Contable</p>
+      <div class="page-loader__bar" aria-hidden="true"><span></span></div>
+      <span class="sr-only">Cargando página de inicio...</span>
+    </div>
+  </div>
 
   <header class="header sticky top-0 z-50 border-b border-transparent bg-white/95 backdrop-blur">
     <nav class="relative mx-auto flex max-w-6xl items-center justify-between gap-4 px-[4%] py-3">
@@ -472,6 +484,6 @@
     </svg>
   </a>
 
-  <script src="js/main.js?v=7"></script>
+  <script src="js/main.js?v=8"></script>
 </body>
 </html>

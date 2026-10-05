@@ -105,7 +105,6 @@ const revealSelectors = [
   '.video-player',
   '.video-info',
   '.testimonial-card',
-  '.search-panel',
   '.contact-intro',
   '.contact-form',
 ];
@@ -132,6 +131,34 @@ if (!prefersReducedMotion) {
   document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 } else {
   document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
+}
+
+const pageLoader = document.getElementById('pageLoader');
+
+if (pageLoader) {
+  const MIN_LOADER_MS = prefersReducedMotion ? 0 : 700;
+  const MAX_LOADER_MS = 2500;
+
+  const revealPage = () => {
+    if (document.body.classList.contains('page-ready')) return;
+
+    document.body.classList.remove('is-loading');
+    document.body.classList.add('page-ready');
+    pageLoader.classList.add('is-hidden');
+    setTimeout(() => pageLoader.remove(), 700);
+    document.dispatchEvent(new Event('page:ready'));
+  };
+
+  const scheduleReveal = () => {
+    setTimeout(revealPage, Math.max(0, MIN_LOADER_MS - performance.now()));
+  };
+
+  if (document.readyState === 'complete') {
+    scheduleReveal();
+  } else {
+    window.addEventListener('load', scheduleReveal, { once: true });
+  }
+  setTimeout(revealPage, MAX_LOADER_MS);
 }
 
 const sections = document.querySelectorAll('section[id], footer[id]');

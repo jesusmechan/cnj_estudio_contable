@@ -335,9 +335,9 @@ Los elementos `.about__intro`, `.about__value` y `.section-header` reciben la cl
 
 | Servicio | Imagen | Precio |
 |----------|--------|--------|
-| Gestión Tributaria SUNAT | producto-1.jpg | S/ 350 / mes |
-| Contabilidad Integral | producto-2.jpg | S/ 500 / mes |
-| Asesoría Financiera | producto-3.jpg | S/ 800 / mes |
+| Gestión Tributaria SUNAT | servicios/servicio-01.jpg | S/ 350 / mes |
+| Contabilidad Integral | servicios/servicio-02.jpg | S/ 500 / mes |
+| Asesoría Financiera | servicios/servicio-03.jpg | S/ 800 / mes |
 
 #### HTML
 
@@ -403,7 +403,7 @@ Las tres `.service-card` tienen `.reveal` con delays 0s, 0.1s y 0.2s al aparecer
 | `poster` | Imagen de portada antes de dar play. |
 | Texto fallback | Mensaje si el navegador no soporta `<video>`. |
 
-El video (`assets/video-cnj.mp4`) se generó con el script Python `scripts/generate_video.py` (diapositivas + narración TTS). En el navegador solo se reproduce el MP4 final.
+El video (`assets/video-cnj.mp4`) es un MP4 local que el navegador reproduce directamente.
 
 #### Columna informativa
 
@@ -709,7 +709,8 @@ Offset de 120px en `updateActiveNav` compensa la altura del header sticky.
 |---------|----------|
 | `logo3.png` | Header, footer, favicon |
 | `portada.jpg` | Hero, poster del video |
-| `producto-1.jpg` … `producto-3.jpg` | Tarjetas de servicios |
+| `servicios/servicio-01.jpg` … `servicio-22.jpg` | Tarjetas de servicios (inicio y catálogo) |
+| `servicios/slider-01.jpg` … `slider-05.jpg` | Slider de productos |
 | `video-cnj.mp4` | Sección video |
 | `red-facebook.png`, `red-instagram.png`, `red-linkedin.png` | Footer redes |
 | `logo_utp.png` | Footer académico |
