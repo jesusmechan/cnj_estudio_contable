@@ -233,6 +233,49 @@ const sliderDots = document.getElementById("sliderDots");
 const sliderPrev = document.getElementById("sliderPrev");
 const sliderNext = document.getElementById("sliderNext");
 const modoButtons = document.querySelectorAll("[data-modo]");
+const pageLoader = document.getElementById("pageLoader");
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const MIN_LOADER_MS = reduceMotion ? 0 : 700;
+const MAX_LOADER_MS = 2500;
+let pageReady = false;
+
+const enterObserver = !reduceMotion && "IntersectionObserver" in window
+  ? new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-in");
+      enterObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" })
+  : null;
+
+const observeEnter = (elements) => {
+  if (!pageReady) return;
+  elements.forEach((el) => {
+    if (enterObserver) enterObserver.observe(el);
+    else el.classList.add("is-in");
+  });
+};
+
+const revealPage = () => {
+  if (pageReady) return;
+  pageReady = true;
+
+  document.body.classList.remove("is-loading");
+  document.body.classList.add("page-ready");
+
+  if (pageLoader) {
+    pageLoader.classList.add("is-hidden");
+    setTimeout(() => pageLoader.remove(), 700);
+  }
+
+  observeEnter(document.querySelectorAll(".enter-reveal:not(.is-in)"));
+};
+
+const scheduleReveal = () => {
+  setTimeout(revealPage, Math.max(0, MIN_LOADER_MS - performance.now()));
+};
 
 const destacados = servicios.filter((servicio) => servicio.destacado).slice(0, 5);
 
@@ -329,8 +372,8 @@ const renderCatalogo = () => {
   emptyState.classList.toggle("hidden", resultados.length > 0);
   productosGrid.classList.toggle("hidden", resultados.length === 0);
 
-  productosGrid.innerHTML = resultados.map((servicio) => `
-    <article class="service-card group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+  productosGrid.innerHTML = resultados.map((servicio, index) => `
+    <article style="--enter-delay: ${(index % 3) * 90}ms" class="service-card enter-reveal group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
       <div class="relative">
         <span class="absolute left-4 top-4 z-10 rounded-full bg-navy px-3 py-1 text-xs font-bold text-white">${String(servicio.id).padStart(2, "0")}</span>
         <img src="${servicio.imagen}" alt="${servicio.nombre}" class="h-44 w-full object-cover transition duration-500 group-hover:scale-105">
@@ -346,6 +389,8 @@ const renderCatalogo = () => {
       </div>
     </article>
   `).join("");
+
+  observeEnter(productosGrid.querySelectorAll(".enter-reveal"));
 };
 
 const actualizarModo = () => {
@@ -426,3 +471,10 @@ if (searchInput && searchForm && searchButton && resetButton) {
     goToSlide(state.slide >= maxIndex ? 0 : state.slide + 1);
   }, 7000);
 }
+
+if (document.readyState === "complete") {
+  scheduleReveal();
+} else {
+  window.addEventListener("load", scheduleReveal, { once: true });
+}
+setTimeout(revealPage, MAX_LOADER_MS);
