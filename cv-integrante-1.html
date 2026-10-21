@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Currículum vitae de Jesús Manuel Mechan Gonzales, desarrollador Full Stack (.NET, Angular, Java) y líder de proyecto de CNJ - Integridad Contable.">
+  <title>CV Integrante 1 | CNJ - Integridad Contable</title>
+  <link rel="icon" type="image/png" href="assets/logo3.png">
+  <link rel="apple-touch-icon" href="assets/logo3.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#243447",
+            gold: "#c9a227",
+            "gold-700": "#a6851c",
+          },
+          fontFamily: {
+            sans: ["Fira Sans", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="css/styles.css?v=45">
+</head>
+<body class="is-loading bg-[#f6f4ef] font-sans text-slate-800">
+
+  <div class="page-loader" id="pageLoader" role="status" aria-live="polite">
+    <div class="page-loader__inner">
+      <div class="page-loader__logo">
+        <span class="page-loader__ring" aria-hidden="true"></span>
+        <img src="assets/logo3.png" alt="">
+      </div>
+      <p class="page-loader__brand">CNJ - Integridad Contable</p>
+      <div class="page-loader__bar" aria-hidden="true"><span></span></div>
+      <span class="sr-only">Cargando currículum...</span>
+    </div>
+  </div>
+
+  <header class="header sticky top-0 z-50 border-b border-transparent bg-white/95 backdrop-blur cv-print-hide">
+    <nav class="relative mx-auto flex max-w-6xl items-center justify-between gap-4 px-[4%] py-3">
+      <a href="index.html" class="flex min-w-0 items-center gap-3">
+        <img src="assets/logo3.png" alt="Logo CNJ Integridad Contable" class="h-12 w-12 rounded-lg object-contain">
+        <span class="min-w-0">
+          <span class="block truncate font-bold text-navy">CNJ - Integridad Contable</span>
+          <span class="hidden text-xs tracking-wide text-slate-500 sm:block">Confianza y Precisión</span>
+        </span>
+      </a>
+      <button id="menuToggle" class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white xl:hidden" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span class="flex flex-col gap-1.5">
+          <span class="block h-0.5 w-5 bg-navy"></span>
+          <span class="block h-0.5 w-5 bg-navy"></span>
+        </span>
+      </button>
+      <div id="navbarMain" class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-1 rounded-xl border border-slate-200 bg-white p-3 shadow-xl xl:static xl:flex xl:flex-row xl:items-center xl:gap-5 xl:border-0 xl:bg-transparent xl:p-0 xl:shadow-none">
+        <a href="index.html#inicio" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Inicio</a>
+        <a href="nosotros.html" class="nav-link active rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Nosotros</a>
+        <a href="index.html#servicios" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Servicios</a>
+        <a href="productos.html" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Productos</a>
+        <a href="index.html#video" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Video</a>
+        <a href="index.html#clientes" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Clientes</a>
+        <a href="index.html#contacto" class="nav-link rounded-lg px-3 py-2 text-sm font-medium xl:px-0 xl:py-0">Contacto</a>
+        <a href="index.html#contacto" class="mt-1 inline-flex items-center justify-center rounded-full bg-gold px-5 py-2 text-sm font-semibold text-white transition hover:bg-gold-700 xl:mt-0">Contáctenos</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inicio" class="mx-auto max-w-6xl px-[4%] py-12">
+    <div class="cv-print-hide mb-6 flex flex-wrap items-center justify-between gap-4">
+      <p class="text-sm text-slate-500">
+        <a href="nosotros.html" class="font-semibold text-navy hover:text-gold">Nosotros</a>
+        <span aria-hidden="true"> / </span>
+        Currículum · Integrante 1
+      </p>
+      <a href="nosotros.html" class="cv-print-btn">Volver al equipo</a>
+    </div>
+
+    <article class="cv-sheet">
+      <header class="cv-hero">
+        <div class="cv-hero__top">
+          <span class="cv-brand">
+            <img src="assets/logo3.png" alt="">
+            CNJ
+          </span>
+          <button type="button" id="downloadPdf" class="cv-print-hide cv-print-btn">Descargar PDF</button>
+        </div>
+        <div class="cv-hero__main">
+          <span class="cv-avatar" aria-hidden="true">JM</span>
+          <div class="cv-hero__copy">
+            <h1>Jesús Manuel Mechan Gonzales</h1>
+            <p>Desarrollador Full Stack · .NET y Angular</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="cv-contact">
+        <a href="mailto:jesus_mechan_gonzales@hotmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg>
+          jesus_mechan_gonzales@hotmail.com
+        </a>
+        <a href="tel:+51983622276">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6.5 3.8h2.4l1.2 3-1.6 1a12 12 0 006.7 6.7l1-1.6 3 1.2v2.4A2.2 2.2 0 0018 16.6 15 15 0 015.4 4a2.2 2.2 0 011.1-.2z"/></svg>
+          +51 983 622 276
+        </a>
+        <a href="https://www.google.com/maps/search/Villa+El+Salvador" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 10-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>
+          Villa El Salvador
+        </a>
+        <a href="https://github.com/jesusmechan" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.1-6-2.5M15 22v-3.9a3.4 3.4 0 00-.9-2.6c3 0 6.1-1.5 6.1-6.6A5 5 0 0019 5.3 4.6 4.6 0 0018.8 2s-1.1-.3-3.5 1.3a12.3 12.3 0 00-6.6 0C6.3 1.7 5.2 2 5.2 2A4.6 4.6 0 005 5.3 5 5 0 003.8 8.9c0 5.1 3.1 6.6 6.1 6.6a3.4 3.4 0 00-.9 2.6V22"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/jesus-mechan-gonzales-429b4b134/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v6M8 8h.01M12 17v-4.5a2 2 0 114 0V17"/></svg>
+          LinkedIn
+        </a>
+      </div>
+
+      <div class="cv-pad">
+        <h2 class="cv-label">Dominios</h2>
+        <p class="cv-masteries">Backend .NET (C#, .NET Core), Angular, TypeScript, Java, SQL Server, Oracle, APIs REST, CI/CD y Scrum. Cuatro años desarrollando aplicaciones web full stack.</p>
+
+        <div class="cv-split">
+          <section>
+            <h2 class="cv-label">Skills</h2>
+            <div class="cv-apps" aria-label="Programas y lenguajes">
+              <span class="cv-app" title="C# / .NET">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 8l-4 4 4 4M13 9h7M13 12h7M16 7v10"/></svg>
+                <span class="sr-only">C# / .NET</span>
+              </span>
+              <span class="cv-app cv-app--gold" title="Angular">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 3-1.4 11L12 21 5.4 17 4 6z"/><path d="M9.2 12h5.6M12 8.2l-1.6 7.6"/></svg>
+                <span class="sr-only">Angular</span>
+              </span>
+              <span class="cv-app cv-app--paper" title="SQL Server / Oracle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/></svg>
+                <span class="sr-only">SQL Server / Oracle</span>
+              </span>
+              <span class="cv-app cv-app--paper" title="Java">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 15c1.5 1.2 4.5 1.2 6 0M8 18c2 1.4 6 1.4 8 0"/><path d="M13 5c-2 2-1 4 0 5-2 .2-4 1.5-4 3.2 0 2 2.2 3.3 5 3.3"/></svg>
+                <span class="sr-only">Java</span>
+              </span>
+              <span class="cv-app" title="Git / GitLab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M8 7c2 3 6 3 8 0M12 16V9"/></svg>
+                <span class="sr-only">Git / GitLab</span>
+              </span>
+              <span class="cv-app cv-app--gold" title="TypeScript">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 10h8M12 10v7"/></svg>
+                <span class="sr-only">TypeScript</span>
+              </span>
+            </div>
+            <div class="cv-app-mini" aria-label="Habilidades blandas">
+              <span title="Scrum">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 12a8 8 0 11-2.2-5.5"/><path d="M18 3v4h4"/></svg>
+                <span class="sr-only">Scrum</span>
+              </span>
+              <span title="Comunicación">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 6h10a3 3 0 013 3v4a3 3 0 01-3 3H9l-4 3V9a3 3 0 013-3z"/></svg>
+                <span class="sr-only">Comunicación</span>
+              </span>
+              <span title="Trabajo en equipo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="8" cy="8" r="2.4"/><circle cx="16" cy="8" r="2.4"/><path d="M4 18c.4-2.4 2.4-4 4.8-4s4.4 1.6 4.8 4M11.5 18c.3-1.6 1.5-3 3.3-3.6 1.8.2 3.4 1.6 3.7 3.6"/></svg>
+                <span class="sr-only">Trabajo en equipo</span>
+              </span>
+              <span title="Análisis">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg>
+                <span class="sr-only">Análisis</span>
+              </span>
+              <span title="Liderazgo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l2.1 4.3L19 8.2l-3.5 3.4.8 4.9L12 14.8 7.7 16.5l.8-4.9L5 8.2l4.9-.9z"/></svg>
+                <span class="sr-only">Liderazgo</span>
+              </span>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="cv-label">Educación</h2>
+            <article class="cv-edu">
+              <div>
+                <h3>UTP — Ingeniería de Software</h3>
+                <p>(Estudios en curso. Arquitectura, calidad de software y desarrollo web.)</p>
+              </div>
+              <time datetime="2026">En curso</time>
+            </article>
+            <article class="cv-edu">
+              <div>
+                <h3>SENATI — Desarrollo de Software</h3>
+                <p>(Formación técnica superior. Egresado.)</p>
+              </div>
+              <time>Egresado</time>
+            </article>
+            <article class="cv-edu">
+              <div>
+                <h3>Marcos de Desarrollo Web — 48308</h3>
+                <p>(Curso UTP. HTML, CSS, JavaScript y Tailwind CSS.)</p>
+              </div>
+              <time datetime="2026">2026</time>
+            </article>
+            <article class="cv-edu">
+              <div>
+                <h3>Inglés técnico</h3>
+                <p>(Lectura y uso de documentación técnica en inglés.)</p>
+              </div>
+              <time>Idioma</time>
+            </article>
+          </section>
+        </div>
+
+        <section class="cv-jobs">
+          <h2 class="cv-label">Experiencia</h2>
+          <article class="cv-job">
+            <div class="cv-job__mark"><span>OT</span></div>
+            <div>
+              <div class="cv-job__head">
+                <h3>Software Enterprise Services — OTASS</h3>
+                <time datetime="2025-10">10/2025 — Presente</time>
+              </div>
+              <p class="cv-job__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 10-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>
+                Ingeniero de Fábrica de Software IDI
+              </p>
+              <ul class="cv-job__list">
+                <li>Analista funcional en el desarrollo de sistemas para OTASS.</li>
+                <li>Levantamiento, análisis y documentación de requerimientos funcionales y técnicos.</li>
+                <li>Coordinación con usuarios finales, equipo de desarrollo y QA para la validación e implementación de soluciones.</li>
+                <li>Diseño e implementación de módulos para el registro y control de caja chica y reembolsos.</li>
+                <li>Desarrollo de módulo para la derivación de solicitudes, incluyendo flujos de aprobación.</li>
+                <li>Desarrollo full stack: implementación de funcionalidades en frontend con Angular 17 y backend en Java.</li>
+                <li>Diseño, modelado y mantenimiento de base de datos en Oracle (tablas, procedimientos almacenados, funciones y optimización de consultas).</li>
+                <li>Desarrollo y consumo de APIs RESTful para la integración entre frontend y backend.</li>
+                <li>Participación en pruebas funcionales, despliegues y mejora continua del sistema.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="cv-job">
+            <div class="cv-job__mark"><span>HO</span></div>
+            <div>
+              <div class="cv-job__head">
+                <h3>Holinsys</h3>
+                <time datetime="2025-06">06/2025 — 09/2025</time>
+              </div>
+              <p class="cv-job__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 10-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>
+                Backend Developer
+              </p>
+              <ul class="cv-job__list">
+                <li>Participación en el desarrollo y mantenimiento de soluciones backend para los proyectos de la empresa, realizando seguimiento y control de proyectos activos.</li>
+                <li>Implementación de mejoras y nuevas funcionalidades en el sistema COLPA, trabajando en la capa Web y Web API, así como en la elaboración de documentación técnica para facilitar la mantenibilidad y transferencia de conocimiento.</li>
+                <li>Desarrollo e integración de endpoints y servicios Web API para el proyecto Homologaciones, considerando criterios de seguridad, escalabilidad y eficiencia.</li>
+                <li>Participación en el desarrollo de una arquitectura basada en microservicios utilizando .NET 8, contribuyendo en la implementación y mantenimiento de servicios independientes y escalables.</li>
+                <li>Implementación y gestión de almacenamiento de archivos mediante Azure Blob Storage, incluyendo el uso de versionado de blobs para el control, recuperación y administración de diferentes versiones de archivos.</li>
+                <li>Aplicación de buenas prácticas de desarrollo backend y participación en la documentación técnica de las soluciones implementadas.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="cv-job">
+            <div class="cv-job__mark"><span>SE</span></div>
+            <div>
+              <div class="cv-job__head">
+                <h3>Software Enterprise Services</h3>
+                <time datetime="2022-06">06/2022 — 05/2025</time>
+              </div>
+              <p class="cv-job__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 10-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>
+                Ingeniero de Fábrica de Software IDI
+              </p>
+              <ul class="cv-job__list">
+                <li>Gestión de requerimientos.</li>
+                <li>Seguimiento, asignación y atención de incidentes.</li>
+                <li>Implementar mejoras de seguridad en los sistemas de SES para corregir observaciones obtenidas de las pruebas de Ethical Hacking, con apoyo de las herramientas OWASP ZAP y SonarQube.</li>
+                <li>Actualizar el Sistema de Compras y Pagos para permitir la realización de pagos de manera recurrente.</li>
+                <li>Análisis y desarrollo de nuevos requerimientos para la torre de finanzas SES.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="cv-job">
+            <div class="cv-job__mark"><span>SP</span></div>
+            <div>
+              <div class="cv-job__head">
+                <h3>Software Enterprise Services — Southern Peaks Mining</h3>
+                <time datetime="2024-09">09/2024 — 03/2025</time>
+              </div>
+              <p class="cv-job__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 10-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>
+                Ingeniero de Fábrica de Software
+              </p>
+              <ul class="cv-job__list">
+                <li>Analista funcional en el desarrollo de sistemas para Southern Peaks Mining.</li>
+                <li>Coordinar reuniones con usuarios para levantar requerimientos.</li>
+                <li>Coordinación con equipos de desarrollo y validación de soluciones.</li>
+                <li>
+                  Desarrollo del Sistema Entregas a Rendir:
+                  <ul>
+                    <li>Generar módulos para el registro de anticipos, caja chica y reembolso.</li>
+                    <li>Generar módulo para la derivación de las solicitudes previamente registradas.</li>
+                    <li>Generar módulo para el registro de facturas que se asociarán a las solicitudes de anticipo, caja chica y reembolso.</li>
+                    <li>Generar proceso para la derivación interna para usuarios pertenecientes al área de administración.</li>
+                  </ul>
+                </li>
+                <li>
+                  Implementación del Sistema Control de Accesos:
+                  <ul>
+                    <li>Generar un módulo Administración de Accesos para la gestión de usuarios, roles y perfiles que interactuarán con los sistemas.</li>
+                    <li>Generar un módulo Mantenedores para la gestión de menús, datos maestros, sistemas, áreas, centros de costos y gestión de credenciales SUNAT.</li>
+                  </ul>
+                </li>
+                <li>
+                  Implementación del Sistema Workflow:
+                  <ul>
+                    <li>Generar el módulo de mantenedores para gestionar las opciones y estados de las actividades por cada flujo de trabajo.</li>
+                    <li>Generar el módulo de configuración para gestionar los flujos de trabajo parametrizables para ser consumidos por los sistemas.</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </article>
+          <article class="cv-job">
+            <div class="cv-job__mark"><span>BC</span></div>
+            <div>
+              <div class="cv-job__head">
+                <h3>Software Enterprise Services — Bank of China</h3>
+                <time datetime="2024-01">01/2024 — 12/2024</time>
+              </div>
+              <p class="cv-job__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 10-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>
+                Ingeniero de Fábrica de Software
+              </p>
+              <ul class="cv-job__list">
+                <li>Analista funcional en el desarrollo de sistemas para Bank of China (BOC).</li>
+                <li>Coordinar reuniones con usuarios para levantar requerimientos.</li>
+                <li>Coordinación con equipos de desarrollo y validación de soluciones.</li>
+                <li>
+                  Implementación del Sistema Gestión Pago Proveedores:
+                  <ul>
+                    <li>Generar un módulo de formularios para la gestión de pagos a proveedores, reembolsos y planillas.</li>
+                    <li>Generar un módulo de Consulta de Formularios para visualizar su detalle y su trazabilidad en el workflow.</li>
+                    <li>Generar un módulo Administración para gestionar la lista de tipos de cambio, colaboradores y presupuestos.</li>
+                    <li>Generar un módulo de Programación de Pagos para visualizar los formularios en cierta actividad y poder derivar de forma masiva.</li>
+                    <li>Generar un módulo de Reportes para exportar en formato Excel las consultas como reporte de pagos, presupuestos ejecutados, pagos semanales y formularios.</li>
+                  </ul>
+                </li>
+                <li>
+                  Implementación del Sistema Control de Accesos:
+                  <ul>
+                    <li>Generar un módulo Administración de Accesos para la gestión de usuarios, roles y perfiles que interactuarán con los sistemas.</li>
+                    <li>Generar un módulo Mantenedores para la gestión de menús, datos maestros y sistemas.</li>
+                  </ul>
+                </li>
+                <li>
+                  Implementación del Sistema Workflow:
+                  <ul>
+                    <li>Generar el módulo de Mantenedores para gestionar las opciones y estados de las actividades por cada flujo de trabajo.</li>
+                    <li>Generar el módulo Configuración para gestionar los flujos de trabajo parametrizables para ser consumidos por los sistemas.</li>
+                  </ul>
+                </li>
+                <li>Atención de nuevos requerimientos.</li>
+                <li>Atención de incidentes.</li>
+                <li>Servicio de mantenimiento mensual a los sistemas.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="cv-job">
+            <div class="cv-job__mark"><span>SCI</span></div>
+            <div>
+              <div class="cv-job__head">
+                <h3>Software Enterprise Services — Control de Inventarios</h3>
+                <time datetime="2023-04">04/2023 — 09/2023</time>
+              </div>
+              <p class="cv-job__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 10-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>
+                Ingeniero de Fábrica de Software IDI
+              </p>
+              <ul class="cv-job__list">
+                <li>Participé en el desarrollo del sistema interno Control de Inventarios (SCI), utilizado para la gestión de activos de la empresa.</li>
+                <li>El sistema permite el ingreso de activos, salida a colaboradores, proveedores, clientes, traslado entre almacenes, reingresos, etc.</li>
+                <li>Desarrollé funcionalidades y módulos utilizando tecnologías como .NET Core 3.1, SQL Server y Angular v12, asegurando eficiencia en el flujo de operaciones logísticas.</li>
+                <li>Documenté los procesos implementados, brindé soporte a usuarios internos y participé en las pruebas QA (calidad) y UAT (aprobación de usuario final).</li>
+              </ul>
+            </div>
+          </article>
+          <article class="cv-job">
+            <div class="cv-job__mark"><span>HD</span></div>
+            <div>
+              <div class="cv-job__head">
+                <h3>HDC BPO Services</h3>
+                <time datetime="2021-03">03/2021 — 05/2022</time>
+              </div>
+              <p class="cv-job__meta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 10-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>
+                Auxiliar de Desarrollo TI
+              </p>
+              <ul class="cv-job__list">
+                <li>Documentar el desarrollo del sistema en desarrollo y de los sistemas existentes.</li>
+                <li>Automatización de procesos de carga.</li>
+                <li>Solución a incidencias notificadas por mi jefe inmediato.</li>
+                <li>Realizar cargas de información enviada por los clientes a los sistemas de la empresa.</li>
+                <li>Crear manuales de usuario.</li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
+        <section class="cv-jobs">
+          <h2 class="cv-label">Certificados</h2>
+          <div class="cv-certs">
+            <a class="cv-cert" href="assets/certificados/integrante-1/net8-microservices-ddd.pdf" target="_blank" rel="noopener noreferrer">
+              <img src="assets/certificados/integrante-1/net8-microservices-ddd.jpg" alt="Certificado Udemy de .NET 8 Microservices: DDD, CQRS y Vertical/Clean Architecture">
+              <div>
+                <h3>.NET 8 Microservices: DDD, CQRS y Clean Architecture</h3>
+                <p>Udemy · Mehmet Ozkaya · 28.5 horas</p>
+                <span>Ver PDF · Oct 2025</span>
+              </div>
+            </a>
+            <a class="cv-cert" href="assets/certificados/integrante-1/especialista-net-cloud.pdf" target="_blank" rel="noopener noreferrer">
+              <img src="assets/certificados/integrante-1/especialista-net-cloud.jpg" alt="Certificado Tecylab de Especialista en .NET Cloud">
+              <div>
+                <h3>Especialista en .NET Cloud</h3>
+                <p>Tecylab · 40 horas académicas · Lima</p>
+                <span>Ver PDF · May 2026</span>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <div class="cv-portfolio">
+          <strong>Portafolio:</strong>
+          <a href="https://github.com/jesusmechan" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.1-6-2.5M15 22v-3.9a3.4 3.4 0 00-.9-2.6c3 0 6.1-1.5 6.1-6.6A5 5 0 0019 5.3 4.6 4.6 0 0018.8 2s-1.1-.3-3.5 1.3a12.3 12.3 0 00-6.6 0C6.3 1.7 5.2 2 5.2 2A4.6 4.6 0 005 5.3 5 5 0 003.8 8.9c0 5.1 3.1 6.6 6.1 6.6a3.4 3.4 0 00-.9 2.6V22"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/jesus-mechan-gonzales-429b4b134/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v6M8 8h.01M12 17v-4.5a2 2 0 114 0V17"/></svg>
+            LinkedIn
+          </a>
+          <a href="index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>
+            Sitio CNJ
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="relative border-t border-slate-200 bg-white pt-16">
+    <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-gold via-[#dbb84a] to-transparent"></div>
+    <div class="mx-auto grid max-w-6xl gap-10 px-[4%] pb-10 lg:grid-cols-3">
+      <div>
+        <a href="index.html" class="mb-5 inline-flex items-center gap-3">
+          <img src="assets/logo3.png" alt="Logo CNJ" class="h-12 w-12 rounded-lg object-contain">
+          <span>
+            <span class="block font-bold text-navy">CNJ - Integridad Contable</span>
+            <span class="text-xs text-slate-500">Confianza y Precisión</span>
+          </span>
+        </a>
+        <p class="mb-2 mt-6 text-sm text-slate-500">Redes sociales</p>
+        <div class="mb-6 flex gap-2">
+          <a href="https://www.facebook.com/CNJIntegridadContable" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f6f4ef]" aria-label="Facebook">
+            <img src="assets/red-facebook.png" alt="" class="h-5 w-5">
+          </a>
+          <a href="https://www.instagram.com/cnjintegridadcontable" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f6f4ef]" aria-label="Instagram">
+            <img src="assets/red-instagram.png" alt="" class="h-5 w-5">
+          </a>
+          <a href="https://www.linkedin.com/company/cnj-integridad-contable" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f6f4ef]" aria-label="LinkedIn">
+            <img src="assets/red-linkedin.png" alt="" class="h-5 w-5">
+          </a>
+        </div>
+        <a href="https://www.utp.edu.pe" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3">
+          <img src="assets/logo_utp.png" alt="Logo Universidad Tecnológica del Perú" class="h-10 w-10 object-contain">
+          <span class="text-sm text-slate-500">
+            <strong class="block text-navy">Universidad Tecnológica del Perú</strong>
+            Marcos de Desarrollo Web — 48308
+          </span>
+        </a>
+      </div>
+      <div>
+        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-navy">Contacto integrante</h4>
+        <ul class="space-y-4">
+          <li>
+            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-gold">Nombre</span>
+            <span>Jesús Manuel Mechan Gonzales</span>
+          </li>
+          <li>
+            <span class="mb-1 block text-xs font-semibold uppercase tracking-wide text-gold">Correo</span>
+            <a href="mailto:u24254910@utp.edu.pe" class="hover:text-gold">u24254910@utp.edu.pe</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-navy">Páginas del rubro</h4>
+        <div class="flex flex-col gap-3">
+          <a href="https://www.pwc.com/pe.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-semibold text-navy hover:text-gold">
+            <img src="assets/logo_pwc.png" alt="Logo PwC Perú" class="h-9 w-9 object-contain">
+            <span>PwC Perú</span>
+          </a>
+          <a href="https://www.ey.com/es_pe" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-semibold text-navy hover:text-gold">
+            <img src="assets/logo_ey.png" alt="Logo EY Perú" class="h-9 w-9 object-contain">
+            <span>EY Perú</span>
+          </a>
+          <a href="https://kpmg.com/pe/es/home.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-semibold text-navy hover:text-gold">
+            <img src="assets/logo_kpmg.png" alt="Logo KPMG Perú" class="h-9 w-9 object-contain">
+            <span>KPMG Perú</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="bg-[#f6f4ef] py-4 text-center text-sm text-slate-500">
+      <p>&copy; <span id="currentYear"></span> CNJ - Integridad Contable. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <a href="#inicio" class="back-to-top fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold bg-navy text-white cv-print-hide" id="backToTop" aria-label="Volver al inicio" title="Volver al inicio">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <script src="js/main.js?v=11"></script>
+  <script src="js/cv.js?v=1"></script>
+</body>
+</html>
