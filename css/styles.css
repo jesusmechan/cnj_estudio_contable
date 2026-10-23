@@ -1086,9 +1086,11 @@ body.is-loading { overflow: hidden; }
 .cv-avatar {
   display: grid;
   place-items: center;
+  overflow: hidden;
   width: 7.6rem;
   height: 7.6rem;
   margin-bottom: 0;
+  padding: 0;
   border: 5px solid #fff;
   border-radius: 999px;
   background:
@@ -1101,6 +1103,13 @@ body.is-loading { overflow: hidden; }
   letter-spacing: 0.08em;
   box-shadow: 0 12px 28px rgba(36, 52, 71, 0.22);
   z-index: 1;
+}
+
+.cv-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
 }
 
 .cv-hero__copy h1 {
