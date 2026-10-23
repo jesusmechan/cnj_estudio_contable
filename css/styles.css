@@ -946,7 +946,29 @@ body.is-loading { overflow: hidden; }
   color: var(--navy);
 }
 
-.matrix-table tbody tr:nth-child(even) { background: #fbfaf7; }
+.matrix-table .matrix-group th,
+.matrix-table .matrix-group th:first-child {
+  background: var(--navy);
+  color: #fff;
+  border-bottom: 0;
+  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  padding: 0.68rem 0.9rem;
+}
+
+.matrix-group__kicker {
+  color: #dbb84a;
+  margin-right: 0.55rem;
+}
+
+.matrix-table tbody tr.matrix-task:nth-child(even of .matrix-task) {
+  background: #fbfaf7;
+}
+
+.matrix-table tbody tr.matrix-task:hover {
+  background: #f4efe4;
+}
+
 .matrix-table tbody tr:last-child td { border-bottom: 0; }
 
 .raci {
