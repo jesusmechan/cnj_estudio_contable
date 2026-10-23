@@ -27,7 +27,7 @@
       },
     };
   </script>
-  <link rel="stylesheet" href="css/styles.css?v=48">
+  <link rel="stylesheet" href="css/styles.css?v=50">
 </head>
 <body class="is-loading bg-[#f6f4ef] font-sans text-slate-800">
 
@@ -97,7 +97,7 @@
               <div class="max-w-xl">
                 <p class="mb-4 text-sm font-semibold uppercase tracking-wider text-[#dbb84a]">Organización</p>
                 <h2 class="mb-5 text-4xl font-bold leading-tight text-white md:text-5xl">Roles definidos, un solo avance</h2>
-                <p class="hidden text-lg leading-relaxed text-white/90 md:block">Un líder coordina; cada integrante responde por frontend, backend o la base del sitio.</p>
+                <p class="hidden text-lg leading-relaxed text-white/90 md:block">Un líder coordina; frontend y backend avanzan el sitio en conjunto.</p>
               </div>
             </div>
           </div>
@@ -155,7 +155,7 @@
       <header class="section-header mb-10 max-w-2xl">
         <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-gold">Estructura del equipo</span>
         <h2 class="text-3xl font-bold text-navy">Mapa de organización</h2>
-        <p class="mt-3 text-slate-500">Un organizador y tres cargos. Cada casilla abre el currículum del integrante.</p>
+        <p class="mt-3 text-slate-500">Un organizador y dos integrantes. Cada casilla abre el currículum.</p>
       </header>
 
       <div class="org-chart" aria-label="Organigrama del equipo de desarrollo">
@@ -168,16 +168,8 @@
         </div>
         <ol class="org-chart__level">
           <li>
-            <a href="cv-integrante-1.html" class="org-card">
-              <span class="org-card__num">01</span>
-              <span class="org-card__tag">Full Stack</span>
-              <strong class="org-card__name">Integrante 1</strong>
-              <span class="org-card__meta">Arquitectura del sitio</span>
-            </a>
-          </li>
-          <li>
             <a href="cv-integrante-2.html" class="org-card">
-              <span class="org-card__num">02</span>
+              <span class="org-card__num">01</span>
               <span class="org-card__tag">Frontend</span>
               <strong class="org-card__name">Jesús Anthony Pantoja Barrial</strong>
               <span class="org-card__meta">Interfaz y estilos</span>
@@ -185,7 +177,7 @@
           </li>
           <li>
             <a href="cv-integrante-3.html" class="org-card">
-              <span class="org-card__num">03</span>
+              <span class="org-card__num">02</span>
               <span class="org-card__tag">Backend</span>
               <strong class="org-card__name">Jeremy Nicolas Chiuyari Sanchez</strong>
               <span class="org-card__meta">Lógica y pruebas</span>
@@ -201,34 +193,73 @@
       <header class="section-header mb-8 max-w-2xl">
         <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-wider text-gold">Descripción del equipo</span>
         <h2 class="text-3xl font-bold text-navy">Directorio de desarrolladores</h2>
-        <p class="mt-3 text-slate-500">Rol de cada integrante y acceso a su currículum: programas, lenguajes, habilidades blandas y experiencia.</p>
+        <p class="mt-3 text-slate-500">En cada ficha: proyectos realizados, lenguajes y habilidades blandas. El botón abre el currículum completo.</p>
       </header>
 
       <div class="team-dir">
         <article class="team-row">
           <span class="team-mono" aria-hidden="true">JM</span>
           <div>
-            <p class="team-row__role">Integrante 1 · Líder</p>
+            <p class="team-row__role">Líder · Full Stack</p>
             <h3>Jesús Manuel Mechan Gonzales</h3>
-            <p>Líder del equipo y desarrollador Full Stack. Aporta experiencia en .NET, Angular, Java y bases de datos para la arquitectura del sitio.</p>
+            <dl class="team-facts">
+              <div>
+                <dt>Proyectos</dt>
+                <dd>OTASS, Holinsys, Southern Peaks Mining, Bank of China, Control de Inventarios y CNJ Integridad Contable.</dd>
+              </div>
+              <div>
+                <dt>Lenguajes</dt>
+                <dd>C#, .NET, Angular, TypeScript, Java, SQL Server y Oracle.</dd>
+              </div>
+              <div>
+                <dt>Habilidades blandas</dt>
+                <dd>Liderazgo, Scrum, comunicación, trabajo en equipo y análisis.</dd>
+              </div>
+            </dl>
           </div>
           <a href="cv-integrante-1.html" class="team-row__btn">Currículum</a>
         </article>
         <article class="team-row">
           <span class="team-mono" aria-hidden="true">JP</span>
           <div>
-            <p class="team-row__role">Integrante 2 · Frontend</p>
+            <p class="team-row__role">Frontend</p>
             <h3>Jesús Anthony Pantoja Barrial</h3>
-            <p>Data Analyst. Aporta Power BI, Python, SQL y SAP a la interfaz: slider, tarjetas y versión móvil con lectura clara.</p>
+            <dl class="team-facts">
+              <div>
+                <dt>Proyectos</dt>
+                <dd>Triton Trading (AppSheet y Power BI), Alicorp, Dupree, Transporte Mersol y CNJ Integridad Contable.</dd>
+              </div>
+              <div>
+                <dt>Lenguajes</dt>
+                <dd>Python, SQL, HTML, CSS, JavaScript, Power BI, SAP y AppSheet.</dd>
+              </div>
+              <div>
+                <dt>Habilidades blandas</dt>
+                <dd>Liderazgo operativo, trabajo en equipo, comunicación, mejora continua y análisis.</dd>
+              </div>
+            </dl>
           </div>
           <a href="cv-integrante-2.html" class="team-row__btn">Currículum</a>
         </article>
         <article class="team-row">
           <span class="team-mono" aria-hidden="true">JC</span>
           <div>
-            <p class="team-row__role">Integrante 3 · Backend</p>
+            <p class="team-row__role">Backend</p>
             <h3>Jeremy Nicolas Chiuyari Sanchez</h3>
-            <p>Estudiante de Ingeniería de Sistemas. Aporta Node.js, SQL y JavaScript al catálogo, las búsquedas y las validaciones del sitio.</p>
+            <dl class="team-facts">
+              <div>
+                <dt>Proyectos</dt>
+                <dd>GRUPO ANC Logística Integral y CNJ Integridad Contable (catálogo, búsquedas y validaciones).</dd>
+              </div>
+              <div>
+                <dt>Lenguajes</dt>
+                <dd>JavaScript, TypeScript, Node.js, SQL, Flutter, Dart, HTML y CSS.</dd>
+              </div>
+              <div>
+                <dt>Habilidades blandas</dt>
+                <dd>Liderazgo operativo, trabajo en equipo, comunicación, toma de decisiones y orientación a resultados.</dd>
+              </div>
+            </dl>
           </div>
           <a href="cv-integrante-3.html" class="team-row__btn">Currículum</a>
         </article>
@@ -249,9 +280,9 @@
           <thead>
             <tr>
               <th>Tarea</th>
-              <th>Integrante 1</th>
-              <th>Integrante 2</th>
-              <th>Integrante 3</th>
+              <th>Jesús Mechan</th>
+              <th>Jesús Pantoja</th>
+              <th>Jeremy Chiuyari</th>
             </tr>
           </thead>
           <tbody>
