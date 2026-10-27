@@ -107,6 +107,10 @@ const revealSelectors = [
   '.testimonial-card',
   '.contact-intro',
   '.contact-form',
+  '.org-board',
+  '.team-row',
+  '.matrix-wrap',
+  '.cv-sheet',
 ];
 
 document.querySelectorAll(revealSelectors.join(', ')).forEach((el) => {
@@ -128,7 +132,13 @@ if (!prefersReducedMotion) {
     { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
   );
 
-  document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+  document.querySelectorAll('.reveal').forEach((el) => {
+    if (el.getBoundingClientRect().height > window.innerHeight * 0.7) {
+      el.classList.add('is-visible');
+      return;
+    }
+    revealObserver.observe(el);
+  });
 } else {
   document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
 }
@@ -184,7 +194,7 @@ const updateActiveNav = () => {
 
   navLinks.forEach((link) => {
     const href = link.getAttribute('href');
-    if (href === 'productos.html') {
+    if (href === 'productos.html' || href === 'nosotros.html') {
       link.classList.remove('active');
       return;
     }
