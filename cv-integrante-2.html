@@ -27,7 +27,7 @@
       },
     };
   </script>
-  <link rel="stylesheet" href="css/styles.css?v=44">
+  <link rel="stylesheet" href="css/styles.css?v=53">
 </head>
 <body class="is-loading bg-[#f6f4ef] font-sans text-slate-800">
 
@@ -88,7 +88,22 @@
             <img src="assets/logo3.png" alt="">
             CNJ
           </span>
-          <button type="button" id="downloadPdf" class="cv-print-hide cv-print-btn">Descargar PDF</button>
+          <details class="cv-pdf-menu cv-print-hide" id="cvPdfMenu">
+            <summary class="cv-print-btn">
+              Descargar PDF
+              <svg class="cv-pdf-menu__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="cv-pdf-menu__list">
+              <a href="assets/certificados/cv-pdf-integrante-2/CV_JESUS_PANTOJA.pdf" download="CV_JESUS_PANTOJA.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v12M8 12l4 4 4-4"/><path d="M5 20h14"/></svg>
+                Descargar
+              </a>
+              <a href="assets/certificados/cv-pdf-integrante-2/CV_JESUS_PANTOJA.pdf" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 5h5v5M19 5l-8 8"/><path d="M17 13v5a1 1 0 01-1 1H6a1 1 0 01-1-1V8a1 1 0 011-1h5"/></svg>
+                Ver en otra pestaña
+              </a>
+            </div>
+          </details>
         </div>
         <div class="cv-hero__main">
           <span class="cv-avatar">
